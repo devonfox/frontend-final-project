@@ -6,3 +6,12 @@ export type chartType = {
 export type chartListType= {
     stockCharts: Array<chartType>;
 };
+
+export type tickerType = {
+    id: any;
+    ticker: any;
+}
+
+export type tickerListType = {
+    stockTickers: Array<tickerType>;
+};
