@@ -1,0 +1,22 @@
+
+
+.chart {
+    color: white;
+    position: relative;
+    background-color: green;
+    width: fit-content;
+    height: fit-content;
+}
+
+.btn {
+    color: white;
+    background-color: blue;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
