@@ -1,8 +1,5 @@
-import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import TestPolygon from "@/components/TestPolygon";
+import TestPolygonEndpoint from "@/components/TestPolygonEndpoint";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,7 +7,7 @@ export default function Home() {
   return (
     <>
       <main>
-        <TestPolygon />
+        <TestPolygonEndpoint />
       </main>
     </>
   );
