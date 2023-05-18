@@ -1,0 +1,13 @@
+.chartGrid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .5em;
+  padding: .5em;
+}
+
+.chartItem {
+  width: fit-content;
+  height: fit-content;
+}
