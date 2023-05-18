@@ -1,6 +1,6 @@
 import React from 'react';
 import {tickerListType, tickerType} from '@/types';
-import styles from './tickerLarge.module.css';
+import styles from './tickerGrid.module.css';
 
 const tickerGrid = ({myTickers}: {myTickers: tickerListType}) => {
   return (
