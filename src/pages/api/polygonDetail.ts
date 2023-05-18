@@ -12,7 +12,7 @@ export default async function handler(
     const response = await axios.get<{ data: any }>(
       `https://api.polygon.io/v3/reference/tickers/${symbol}?apiKey=${apiKey}`,
     );
-    const data = response.data;
+    const data: {data: any} = response.data;
     res.status(200).json(data);
   } catch (error) {
     console.error(error);

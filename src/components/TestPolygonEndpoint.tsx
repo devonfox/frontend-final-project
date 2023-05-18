@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-const TestPolygon = () => {
+const TestPolygonEndpoint = () => {
   const [data, setData] = useState<any>(null);
   const [symbol, setSymbol] = useState("");
   const [notFound, setNotFound] = useState(false);
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`/api/polygon?symbol=${symbol}`);
+      const response = await fetch(`/api/polygonDetail?symbol=${symbol}`);
 
       const data = await response.json();
       setData(data);
@@ -50,4 +50,4 @@ const TestPolygon = () => {
   );
 };
 
-export default TestPolygon;
+export default TestPolygonEndpoint;
