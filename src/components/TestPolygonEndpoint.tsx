@@ -3,17 +3,38 @@ import { useState } from "react";
 const TestPolygonEndpoint = () => {
   const [data, setData] = useState<any>(null);
   const [symbol, setSymbol] = useState("");
-  const [notFound, setNotFound] = useState(false);
+  const [notFound, setNotFound] = useState(false); // TODO: implement
+  const [tickerData, setTickerData] = useState<any>(null);
+  const [price, setPrice] = useState(0);
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`/api/polygonDetail?symbol=${symbol}`);
+  const fetchData = () => {
+    fetch(`/api/polygonDetail?symbol=${symbol}`)
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => console.error(error));
+  };
 
-      const data = await response.json();
-      setData(data);
-    } catch (error) {
-      console.error(error, "okay");
-    }
+  const fetchPrice = () => {
+    fetch(`/api/polygonTicker?symbol=${symbol}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setTickerData(data);
+        setPrice(data.results[0].vw.toFixed(2));
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleClick = () => {
+    fetchData();
+    fetchPrice();
+  };
+
+  const convertDatetoString = (date: string) => {
+    const timestamp = parseInt(date, 10);
+    const newDate = new Date(timestamp);
+    const formattedDate = newDate.toLocaleDateString();
+    const formattedTime = newDate.toLocaleTimeString(); 
+    return new String(formattedDate + " " + formattedTime);
   };
 
   return (
@@ -27,21 +48,29 @@ const TestPolygonEndpoint = () => {
         <button
           type={"button"}
           className={"btn btn-outline-dark col-3 mx-4"}
-          onClick={fetchData}
+          onClick={handleClick}
         >
-          Submit
+          View
         </button>
       </div>
 
-      {data && !notFound ? (
+      {data ? (
         <>
-          <div className="my-4 mx-4">
+          <div className="my-3 mx-4">
             <b className="fs-5">{data.results.name}</b>
           </div>
-          <div className="my-4 mx-4">
-            <i className="fs-5 fs-6">{data.results.description}</i>
+          <div className="my-3 mx-4">
+            <div className={"fs-3 mb-3"}>${price}</div>
+            <div className={"fst-italic fw-light"}>
+              as of {convertDatetoString(tickerData.results[0].t)}
+            </div>
           </div>
-          <pre className={"mx-4 my-5"}>{JSON.stringify(data, null, 2)}</pre>
+          <div className="my-4 mx-4">
+            <div className="fst-italic">{data.results.description}</div>
+          </div>
+          <pre className={"mx-4 my-5"}>
+            {JSON.stringify(tickerData, null, 2)}
+          </pre>
         </>
       ) : (
         <p></p>
