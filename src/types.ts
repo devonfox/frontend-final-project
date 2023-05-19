@@ -4,6 +4,7 @@ export type chartType = {
 }
 
 export type chartListType= {
+    gap: string;
     stockCharts: Array<chartType>;
 };
 
