@@ -30,7 +30,6 @@ const exampleCharts: chartListType = {
 
 return (
     <div>
-        <h1>Charts</h1>
         <ChartGrid myCharts={exampleCharts} />
     </div>
     );

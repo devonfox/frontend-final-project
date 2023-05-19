@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
+package-lock.json
 .pnp.js
 
 # testing
@@ -39,4 +40,5 @@ next-env.d.ts
 #IDE
 .idea
 
+#misc
 notes
