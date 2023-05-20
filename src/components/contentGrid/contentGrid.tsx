@@ -9,7 +9,7 @@ const ContentGrid = ({myCharts}: {myCharts: chartListType}) => {
             flexDirection={'row'}
             justify={'center'}>
                   {myCharts.stockCharts.map((stockChart: chartType) => (
-                        <Box w={'fit-content'} h={'fit-content'} key={stockChart.id}>
+                        <Box m={0} padding={0} w={'fit-content'} h={'fit-content'} key={stockChart.id}>
                               {stockChart.chart}
                         </Box>
                   ))}
