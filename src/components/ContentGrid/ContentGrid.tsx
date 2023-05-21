@@ -1,4 +1,3 @@
-import React, { useRef, useState, useEffect } from 'react';
 import {chartListType, chartType} from '@/types';
 import { Box, Flex} from '@chakra-ui/react'
 
