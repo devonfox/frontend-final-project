@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { chartListType } from '@/types';
-import ContentGrid from '@/components/ContentGrid/contentGrid';
+import ContentGrid from '@/components/ContentGrid/ContentGrid';
 
 const ChartsPage = () => {
 
