@@ -1,6 +1,7 @@
 import React from 'react';
-import ChartGrid from '@/components/contentGrid/contentGrid';
+
 import { chartListType } from '@/types';
+import ContentGrid from '@/components/ContentGrid/contentGrid';
 
 const ChartsPage = () => {
 
@@ -30,7 +31,7 @@ const exampleCharts: chartListType = {
 
 return (
     <div>
-        <ChartGrid myCharts={exampleCharts} />
+        <ContentGrid myCharts={exampleCharts} />
     </div>
     );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import GraphCard from '@/components/graphCard/graphCard';
+import GraphCard from '@/components/GraphCard/GraphCard';
 import {toggleCardType} from '@/types';
 
 const ChartsPage = () => {
