@@ -27,3 +27,8 @@ export type toggleCardType = {
     lineChart: any;
     pieChart: any;
 }
+
+export type chartDataType = {
+    date: Date;
+    value: number;
+}
