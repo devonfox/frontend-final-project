@@ -12,8 +12,33 @@ const GraphCard = ({ myCharts }: { myCharts: toggleCardType }) => {
 
   const lineChart = myCharts.lineChart;
   const pieChart = myCharts.pieChart;
-  const lineIcon = <ShowChart onClick={handleClick}></ShowChart>;
-  const pieIcon = <PieChart onClick={handleClick}></PieChart>;
+
+  const lineIcon = (
+    <Box
+      width="40px"
+      height="40px"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      onClick={handleClick}
+      backgroundColor={"blue"}
+      borderRadius={"5px"}>
+      <ShowChart />
+    </Box>
+  );
+  const pieIcon = (
+    <Box
+      width="40px"
+      height="40px"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      onClick={handleClick}
+      backgroundColor={"blue"}
+      borderRadius={"5px"}>
+      <PieChart/>
+    </Box>
+  );
 
   return (
     <Box
@@ -29,17 +54,11 @@ const GraphCard = ({ myCharts }: { myCharts: toggleCardType }) => {
         {!cardSwap && lineChart}
       </ScaleFade>
       <Box
-        as="button"
-        color={"white"}
-        backgroundColor={"blue"}
         position={"absolute"}
         top={"10px"}
         right={"10px"}
         display={"flex"}
         alignItems={"center"}
-        padding={"10px"}
-        borderRadius={"5px"}
-        border={"none"}
       >
         {cardSwap && lineIcon}
         {!cardSwap && pieIcon}
