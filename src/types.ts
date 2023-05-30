@@ -1,29 +1,25 @@
+import { Key } from "react";
+
 export type chartType = {
-    id: any;
+    id: Key | null | undefined;
     chart: any;
 }
 
 export type chartListType= {
     gap: string;
-    stockCharts: Array<any>;
+    stockCharts: { id: number; chart: React.JSX.Element; }[];
     verticalSpacing: string;
     templateColumns: string;
 };
 
 export type tickerType = {
-    id: any;
+    id: string | null | undefined;
     ticker: any;
 }
 
 export type tickerListType = {
     stockTickers: Array<tickerType>;
 };
-
-
-export type graphType = {
-    id: any;
-    chart: any;
-}
 
 export type toggleCardType = {
     lineChart: any;

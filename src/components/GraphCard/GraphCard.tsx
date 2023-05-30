@@ -12,30 +12,37 @@ const GraphCard = ({ myCharts }: { myCharts: toggleCardType }) => {
 
   const lineChart = myCharts.lineChart;
   const pieChart = myCharts.pieChart;
+  const iconWidth="40px"
+  const iconHeight="40px"
+  const iconDisplay="flex"
+  const iconAlignItems="center"
+  const iconJustifyContent="center"
+  const iconBackgroundColor="blue"
+  const iconBorderRadius="5px"
 
   const lineIcon = (
     <Box
-      width="40px"
-      height="40px"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
+      width={iconWidth}
+      height={iconHeight}
+      display={iconDisplay}
+      alignItems={iconAlignItems}
+      justifyContent={iconJustifyContent}
       onClick={handleClick}
-      backgroundColor={"blue"}
-      borderRadius={"5px"}>
+      backgroundColor={iconBackgroundColor}
+      borderRadius={iconBorderRadius}>
       <ShowChart />
     </Box>
   );
   const pieIcon = (
     <Box
-      width="40px"
-      height="40px"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
+      width={iconWidth}
+      height={iconHeight}
+      display={iconDisplay}
+      alignItems={iconAlignItems}
+      justifyContent={iconJustifyContent}
       onClick={handleClick}
-      backgroundColor={"blue"}
-      borderRadius={"5px"}>
+      backgroundColor={iconBackgroundColor}
+      borderRadius={iconBorderRadius}>
       <PieChart/>
     </Box>
   );
@@ -68,3 +75,7 @@ const GraphCard = ({ myCharts }: { myCharts: toggleCardType }) => {
 };
 
 export default GraphCard;
+
+
+
+
