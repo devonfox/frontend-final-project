@@ -1,22 +1,27 @@
 import React from "react";
 import GraphCard from "@/components/GraphCard/GraphCard";
-import { chartListType, toggleCardType } from "@/types";
-import ContentGrid from "@/components/ContentGrid/ContentGrid";
+import { chartListType, tickerBoxType, toggleCardType } from "@/types";
+import GraphGrid from "@/components/ContentGrid/ContentGrid";
 import { Grid, GridItem, Box, Center } from "@chakra-ui/react";
 import { generateTickers } from "./contentGenerator";
+import TickerBoard from "@/components/TickerBoard/TickerBoard";
 
 export default function Home() {
-  // placeholders
+  // TOGGLE CARD CREATION START
   const chartTestStyle: React.CSSProperties = {
-    width: "300px",
-    height: "200px",
+    width: "400px",
+    height: "400px",
     backgroundColor: "grey",
+    padding: "0px",
+    margin: "0px",
   };
 
   const chartTestStyle2: React.CSSProperties = {
-    width: "300px",
-    height: "200px",
+    width: "400px",
+    height: "400px",
     backgroundColor: "black",
+    padding: "0px",
+    margin: "0px",
   };
 
   const charts: toggleCardType = {
@@ -31,48 +36,94 @@ export default function Home() {
     }
     return stockCharts;
   };
+  // TOGGLE CARD CREATION END
 
+  // Generate Rectangles for ticker mockup
+  const tickersLeft: chartListType = generateTickers(
+    "0px",
+    "250px",
+    "50px",
+    20,
+    "5rem",
+    "repeat(auto-fit, minmax(20rem, 1fr))",
+  );
+  const tickersRight: chartListType = generateTickers(
+    "0px",
+    "250px",
+    "50px",
+    10,
+    "5rem",
+    "repeat(auto-fit, minmax(20rem, 1fr))",
+  );
+
+  const lightGray = "rgb(221,221,221)";
+  const darkGray = "rgb(68,68,68)";
+  const sectionBgColor = lightGray;
+  const pageBgColor = darkGray;
+  const borderWidth = "2px";
+
+  // Usage:
   const exampleCharts: chartListType = {
     gap: ".5em",
     stockCharts: gridCards(),
-    verticalSpacing: "20rem",
+    verticalSpacing: "30rem",
+    templateColumns: "repeat(auto-fit, minmax(26rem, 1fr))",
   };
 
-  const tickers = generateTickers(".5em", "200px", "50px", 20, "5rem");
-  const tickersRight = generateTickers(".5em", "200px", "50px", 10, "5rem");
+  const tickerBoard: tickerBoxType = {
+    leftTicker: tickersLeft,
+    rightTicker: tickersRight,
+    leftPercent: "60%",
+    rightPercent: "40%",
+    bg: sectionBgColor,
+    borderWidth: borderWidth,
+    borderRadius: "10px",
+    borderColor: "black",
+    paddingY: "15px",
+  };
 
   return (
     <>
       <main>
         <Grid
-          templateAreas={`"header header"
+          templateAreas={`
                         "nav nav"
-                        "tickers tickersright"
+                        "tickers tickers"
                         "graphs graphs"`}
-          gridTemplateRows="5rem 5rem auto auto 1fr 1fr"
+          gridTemplateRows="5rem auto auto 1fr 1fr"
           gridTemplateColumns="5fr 3fr"
-          gap="1"
+          gap="3"
           color="blackAlpha.700"
           fontWeight="bold"
           height="100%"
-          padding="0px"
+          paddingX={{ sm: "20px", md: "30px" }}
+          backgroundColor={pageBgColor}
         >
-          <GridItem pl="2" bg="orange.300" area="header" padding="0px">
-            Header
-          </GridItem>
-          <GridItem pl="2" bg="pink.300" area="nav" padding="0px">
+          <GridItem
+            pl="2"
+            area="nav"
+            padding="0px"
+            borderWidth={borderWidth}
+            borderRadius="10px"
+            borderColor="black"
+            bg={sectionBgColor}
+          >
             Nav
           </GridItem>
-
-          <GridItem pl="2" bg="green.300" area="tickers" padding="0px">
-            <ContentGrid myCharts={tickers} />
-          </GridItem>
-          <GridItem pl="2" bg="green.300" area="tickersright" padding="0px">
-            <ContentGrid myCharts={tickersRight} />
+          <GridItem pl="2" area="tickers" padding="0px">
+            <TickerBoard myTickers={tickerBoard}></TickerBoard>
           </GridItem>
 
-          <GridItem pl="2" bg="blue.300" area="graphs" padding="0px">
-            <ContentGrid myCharts={exampleCharts} />
+          <GridItem
+            pl="2"
+            area="graphs"
+            padding="0px"
+            borderWidth={borderWidth}
+            borderRadius="10px"
+            borderColor="black"
+            bg={sectionBgColor}
+          >
+            <GraphGrid myCharts={exampleCharts} />
           </GridItem>
         </Grid>
       </main>

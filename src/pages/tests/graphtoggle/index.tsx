@@ -1,5 +1,5 @@
 import React from 'react';
-import GraphCard from '@/components/graphCard/graphCard';
+import GraphCard from '@/components/GraphCard/GraphCard';
 import {toggleCardType} from '@/types';
 
 const ChartsPage = () => {

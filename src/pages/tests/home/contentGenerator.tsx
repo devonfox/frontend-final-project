@@ -1,5 +1,6 @@
 import React from "react";
 import { chartListType } from "@/types";
+import { Box } from "@chakra-ui/react";
 
 export function generateTickers(
   gap: string,
@@ -7,14 +8,13 @@ export function generateTickers(
   height: string,
   quantity: number,
   verticalSpacing: string,
-) {
-  const chartTestStyle: React.CSSProperties = {
-    width: width,
-    height: height,
-    backgroundColor: "black",
-  };
+  templateColumns: string,
+): chartListType {
+  const tickers = (
 
-  const tickers = <div style={chartTestStyle}></div>;
+      <Box width={width} height={height} bg="black" />
+
+  );
 
   const gridCards = () => {
     let stockCharts = [];
@@ -28,6 +28,7 @@ export function generateTickers(
     gap: gap,
     stockCharts: gridCards(),
     verticalSpacing: verticalSpacing,
+    templateColumns: templateColumns
   };
   return tickerPack;
 }

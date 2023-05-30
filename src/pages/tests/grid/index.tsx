@@ -26,6 +26,7 @@ const ChartsPage = () => {
       { id: 12, chart: <div style={chartTestStyle}></div> },
     ],
     verticalSpacing: "10rem",
+    templateColumns: "repeat(auto-fit, minmax(20rem, 1fr))"
   };
 
   return (
@@ -36,3 +37,4 @@ const ChartsPage = () => {
 };
 
 export default ChartsPage;
+
