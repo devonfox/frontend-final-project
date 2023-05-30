@@ -1,8 +1,8 @@
-import { Key } from "react";
+import { Key, ReactNode } from "react";
 
 export type chartType = {
     id: Key | null | undefined;
-    chart: any;
+    chart: ReactNode;
 }
 
 export type chartListType= {
