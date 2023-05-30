@@ -12,8 +12,7 @@ const GraphCard = ({ myCharts }: { myCharts: toggleCardType }) => {
 
   const lineChart = myCharts.lineChart;
   const pieChart = myCharts.pieChart;
-  const iconWidth="40px"
-  const iconHeight="40px"
+  const iconWidthHeight="40px"
   const iconDisplay="flex"
   const iconAlignItems="center"
   const iconJustifyContent="center"
@@ -22,8 +21,8 @@ const GraphCard = ({ myCharts }: { myCharts: toggleCardType }) => {
 
   const lineIcon = (
     <Box
-      width={iconWidth}
-      height={iconHeight}
+      width={iconWidthHeight}
+      height={iconWidthHeight}
       display={iconDisplay}
       alignItems={iconAlignItems}
       justifyContent={iconJustifyContent}
@@ -35,8 +34,8 @@ const GraphCard = ({ myCharts }: { myCharts: toggleCardType }) => {
   );
   const pieIcon = (
     <Box
-      width={iconWidth}
-      height={iconHeight}
+      width={iconWidthHeight}
+      height={iconWidthHeight}
       display={iconDisplay}
       alignItems={iconAlignItems}
       justifyContent={iconJustifyContent}
