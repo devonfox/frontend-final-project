@@ -1,5 +1,5 @@
 import React from "react";
-import ChartGrid from "@/components/contentGrid/contentGrid";
+import ChartGrid from "@/components/ContentGrid/ContentGrid";
 import { chartListType } from "@/types";
 
 const ChartsPage = () => {

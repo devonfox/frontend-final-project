@@ -1,7 +1,7 @@
 import React from "react";
-import GraphCard from "@/components/graphCard/graphCard";
+import GraphCard from "@/components/GraphCard/GraphCard";
 import { chartListType, toggleCardType } from "@/types";
-import ChartGrid from "@/components/contentGrid/contentGrid";
+import ContentGrid from "@/components/ContentGrid/ContentGrid";
 import { Grid, GridItem, Box, Center } from "@chakra-ui/react";
 import { generateTickers } from "./contentGenerator";
 
@@ -65,14 +65,14 @@ export default function Home() {
           </GridItem>
 
           <GridItem pl="2" bg="green.300" area="tickers" padding="0px">
-            <ChartGrid myCharts={tickers} />
+            <ContentGrid myCharts={tickers} />
           </GridItem>
           <GridItem pl="2" bg="green.300" area="tickersright" padding="0px">
-            <ChartGrid myCharts={tickersRight} />
+            <ContentGrid myCharts={tickersRight} />
           </GridItem>
 
           <GridItem pl="2" bg="blue.300" area="graphs" padding="0px">
-            <ChartGrid myCharts={exampleCharts} />
+            <ContentGrid myCharts={exampleCharts} />
           </GridItem>
         </Grid>
       </main>
