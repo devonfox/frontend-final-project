@@ -55,33 +55,33 @@ export function useTickerData(symbol: string) {
     };
   }, [dates, symbol]);
 
-  // const apiData: TickerChart = {
-  //   name: "Apple",
-  //   priceData: [
-  //     {
-  //       date: "May 27th",
-  //       price: 91.2,
-  //     },
-  //     {
-  //       date: "May 28th",
-  //       price: 120,
-  //     },
-  //     {
-  //       date: "May 29th",
-  //       price: 120,
-  //     },
-  //     {
-  //       date: "May 30th",
-  //       price: 120,
-  //     },
-  //     {
-  //       date: "May 31st",
-  //       price: 100,
-  //     },
-  //   ],
-  // };
+  const apiData: TickerChart = {
+    name: "Apple",
+    priceData: [
+      {
+        date: "May 27th",
+        price: 91.2,
+      },
+      {
+        date: "May 28th",
+        price: 120,
+      },
+      {
+        date: "May 29th",
+        price: 120,
+      },
+      {
+        date: "May 30th",
+        price: 120,
+      },
+      {
+        date: "May 31st",
+        price: 100,
+      },
+    ],
+  };
 
-  return tickerData;
+  return apiData;
 }
 
 const getLastFiveDays = () => {

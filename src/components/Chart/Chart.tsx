@@ -1,53 +1,53 @@
 import React from "react";
-import { Center, SimpleGrid } from "@chakra-ui/react";
-import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
-import { chartDataType } from "@/types";
+import {
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { useTickerData } from "@/hooks/useTickerData";
 
-enum ChartType {
+export enum ChartType {
   LineChart = "LineChart",
   PieChart = "PieChart",
 }
 
 interface ChartProps {
-  chartType: ChartType
-  label: string;
-  legendName: string;
-  timeData: chartDataType[];
+  symbol: string;
+  type?: ChartType;
 }
 
 const Chart = (props: ChartProps) => {
-
-  const { chartType, label, legendName, timeData } = props;
+  const { symbol } = props;
+  const tickerData = useTickerData(symbol);
 
   return (
-    <Center w="100%" h="100%" mt={10}>
-      <SimpleGrid columns={1} spacing={10}>
+    <div>
+      Apple
+      <ResponsiveContainer width="100%" height={300}>
         <LineChart
-          width={600}
-          height={300}
-          data={timeData}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 0,
-            bottom: 5,
-          }}
+          data={tickerData.priceData}
+          margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
           <Legend />
           <Line
             type="monotone"
-            dataKey={label}
+            dataKey="price"
             stroke="#8884d8"
             activeDot={{ r: 4 }}
           />
         </LineChart>
-      </SimpleGrid>
-    </Center>
+      </ResponsiveContainer>
+    </div>
   );
-}
+};
 
 export default Chart;
