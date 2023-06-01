@@ -2,7 +2,7 @@ import React from "react";
 import GraphCard from "@/components/GraphCard/GraphCard";
 import { chartListType, tickerBoxType, toggleCardType } from "@/types";
 import GraphGrid from "@/components/ContentGrid/ContentGrid";
-import { Grid, GridItem, Box, Center } from "@chakra-ui/react";
+import { Grid, GridItem} from "@chakra-ui/react";
 import { generateTickers } from "./contentGenerator";
 import TickerBoard from "@/components/TickerBoard/TickerBoard";
 import NavBar from "@/components/NavBar/NavBar";
