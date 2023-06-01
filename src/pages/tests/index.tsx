@@ -6,10 +6,13 @@ function Tests() {
     return (
         <ul>
             <li>
-            <Link href="/tests/graphtoggle">GraphToggle</Link>
+            <Link href="/tests/graphtoggle">Graph Toggle</Link>
             </li>
             <li>
-            <Link href="/tests/grid">GraphGrid</Link>
+            <Link href="/tests/grid">Graph Grid</Link>
+            </li>
+            <li>
+            <Link href="/tests/home">HomePage Test</Link>
             </li>
         </ul>
     );

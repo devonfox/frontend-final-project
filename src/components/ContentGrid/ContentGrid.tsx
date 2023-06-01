@@ -1,19 +1,21 @@
-import {chartListType, chartType} from '@/types';
-import { Box, Flex} from '@chakra-ui/react'
+import { chartListType, chartType } from '@/types';
+import { Box, Grid } from '@chakra-ui/react';
 
-const ContentGrid = ({myCharts}: {myCharts: chartListType}) => {
+const ContentGrid = ({ myCharts }: { myCharts: chartListType }) => {
   return (
-      <Flex
-            gap={myCharts.gap}
-            flexWrap={'wrap'}
-            flexDirection={'row'}
-            justify={'center'}>
-                  {myCharts.stockCharts.map((stockChart: chartType) => (
-                        <Box w={'fit-content'} h={'fit-content'} key={stockChart.id}>
-                              {stockChart.chart}
-                        </Box>
-                  ))}
-      </Flex>
+    <Grid
+      templateColumns={myCharts.templateColumns}
+      autoRows={myCharts.verticalSpacing}
+      width="100%"
+      placeItems="center"
+      margin="auto"
+      gridGap={myCharts.gap}
+      paddingX={"20px"}
+      >
+      {myCharts.stockCharts.map((stockChart: chartType) => (
+        <Box key={stockChart.id}>{stockChart.chart}</Box>
+      ))}
+    </Grid>
   );
 };
 
