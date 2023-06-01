@@ -33,35 +33,36 @@ const NavBar = () => {
           />
         <MenuList bg={menuColor}>
 
-          <Link href="/tests/graphtoggle" style={{textDecoration: "none"}}>
+        <Link href="/" style={{textDecoration: "none"}}>
           <MenuItem
             bg={"inherit"}
             _hover={hoverColor}
             color={textColor}
           >
-            Graph Toggle
+            Home
           </MenuItem>
           </Link>
 
-          <Link href="/tests/grid" style={{textDecoration: "none"}}>
-            <MenuItem
-              bg={"inherit"}
-              _hover={hoverColor}
-              color={textColor}
-            >
-              Grid
-            </MenuItem>
+        <Link href="/index-funds" style={{textDecoration: "none"}}>
+          <MenuItem
+            bg={"inherit"}
+            _hover={hoverColor}
+            color={textColor}
+          >
+            Index Funds
+          </MenuItem>
           </Link>
 
-          <Link href="/tests/home" style={{textDecoration: "none"}}>
-            <MenuItem
-              bg={"inherit"}
-              _hover={hoverColor}
-              color={textColor}
-            >
-              HomePage Test
-            </MenuItem>
+          <Link href="/tests/" style={{textDecoration: "none"}}>
+          <MenuItem
+            bg={"inherit"}
+            _hover={hoverColor}
+            color={textColor}
+          >
+            Dev Tests
+          </MenuItem>
           </Link>
+
         </MenuList>
       </Menu>
     </Box>
