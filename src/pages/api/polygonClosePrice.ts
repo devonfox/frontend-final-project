@@ -10,7 +10,7 @@ export default async function handler(
   // date is in the format YYYY-MM-DD
   try {
     const response = await fetch(
-      `https://api.polygon.io//v1/open-close/${symbol}/${date}?apiKey=${apiKey}`,
+      `https://api.polygon.io/v1/open-close/${symbol}/${date}?apiKey=${apiKey}`,
     );
     const data: { data: any } = await response.json();
     res.status(200).json(data);

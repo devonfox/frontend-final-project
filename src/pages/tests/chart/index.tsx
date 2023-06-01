@@ -4,7 +4,7 @@ import Chart, { ChartType } from "@/components/Chart/Chart";
 const chartPage = () => {
   return (
     <Box m={5}>
-      <Chart symbol={"AAPL"} />
+      <Chart symbol={"NFLX"} />
     </Box>
   );
 };

@@ -25,6 +25,9 @@ const Chart = (props: ChartProps) => {
   const { symbol } = props;
   const tickerData = useChartData(symbol);
 
+  const minPrice = Math.min(...tickerData.priceData.map((data) => data.price));
+  const maxPrice = Math.max(...tickerData.priceData.map((data) => data.price));
+
   return (
     <div>
       {tickerData.name}
@@ -35,7 +38,7 @@ const Chart = (props: ChartProps) => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />
-          <YAxis />
+          <YAxis domain={[minPrice, maxPrice]} />
           <Tooltip />
           <Legend />
           <Line
