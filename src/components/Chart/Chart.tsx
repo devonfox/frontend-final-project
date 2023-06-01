@@ -9,7 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { useTickerData } from "@/hooks/useTickerData";
+import { useChartData } from "@/hooks/useChartData";
 
 export enum ChartType {
   LineChart = "LineChart",
@@ -23,11 +23,11 @@ interface ChartProps {
 
 const Chart = (props: ChartProps) => {
   const { symbol } = props;
-  const tickerData = useTickerData(symbol);
+  const tickerData = useChartData(symbol);
 
   return (
     <div>
-      Apple
+      {tickerData.name}
       <ResponsiveContainer width="100%" height={300}>
         <LineChart
           data={tickerData.priceData}

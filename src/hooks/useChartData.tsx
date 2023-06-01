@@ -11,7 +11,7 @@ interface TickerChartData {
   price: number;
 }
 
-export function useTickerData(symbol: string) {
+export function useChartData(symbol: string) {
   const [tickerData, setTickerData] = useState(null);
   const [data, setData] = useState<any>(null);
   const [priceData, setPriceData] = useState<any>(null);
@@ -28,35 +28,11 @@ export function useTickerData(symbol: string) {
           setPrice(data.results[0].vw.toFixed(2));
         })
         .catch((error) => console.error(error));
-
-      fetch(`/api/polygonTicker?symbol=${symbol}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setPriceData(data);
-          setPrice(data.results[0].vw.toFixed(2));
-        })
-        .catch((error) => console.error(error));
-
-      fetch(`/api/polygonTicker?symbol=${symbol}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setPriceData(data);
-          setPrice(data.results[0].vw.toFixed(2));
-        })
-        .catch((error) => console.error(error));
-
-      fetch(`/api/polygonTicker?symbol=${symbol}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setPriceData(data);
-          setPrice(data.results[0].vw.toFixed(2));
-        })
-        .catch((error) => console.error(error));
     };
-  }, [dates, symbol]);
+  }, []);
 
   const apiData: TickerChart = {
-    name: "Apple",
+    name: "Apple Music",
     priceData: [
       {
         date: "May 27th",
