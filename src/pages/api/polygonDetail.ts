@@ -1,4 +1,3 @@
-import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -9,10 +8,10 @@ export default async function handler(
   const apiKey = process.env.POLYGON_API_KEY as string;
 
   try {
-    const response = await axios.get<{ data: any }>(
+    const response = await fetch(
       `https://api.polygon.io/v3/reference/tickers/${symbol}?apiKey=${apiKey}`,
     );
-    const data: {data: any} = response.data;
+    const data: { data: any } = await response.json();
     res.status(200).json(data);
   } catch (error) {
     console.error(error);
