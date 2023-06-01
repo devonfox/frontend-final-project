@@ -35,11 +35,9 @@ const NavBar = () => {
 
           <Link href="/tests/graphtoggle">
           <MenuItem
-            as="a"
             bg={"inherit"}
             _hover={hoverColor}
             color={textColor}
-
           >
             Graph Toggle
           </MenuItem>
@@ -47,7 +45,6 @@ const NavBar = () => {
 
           <Link href="/tests/grid">
             <MenuItem
-              as="a"
               bg={"inherit"}
               _hover={hoverColor}
               color={textColor}
@@ -58,11 +55,9 @@ const NavBar = () => {
 
           <Link href="/tests/home">
             <MenuItem
-              as="a"
               bg={"inherit"}
               _hover={hoverColor}
               color={textColor}
-              href="/tests/home"
             >
               HomePage Test
             </MenuItem>
