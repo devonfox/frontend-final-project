@@ -5,7 +5,6 @@ import GraphGrid from "@/components/ContentGrid/ContentGrid";
 import { Grid, GridItem} from "@chakra-ui/react";
 import { generateTickers } from "./contentGenerator";
 import TickerBoard from "@/components/TickerBoard/TickerBoard";
-import NavBar from "@/components/NavBar/NavBar";
 
 export default function Home() {
 
@@ -87,7 +86,6 @@ export default function Home() {
   return (
     <>
       <main>
-      <NavBar></NavBar>
         <Grid
           templateAreas={`
                         "tickers tickers"
@@ -102,16 +100,6 @@ export default function Home() {
           paddingTop={"15px"}
           backgroundColor={pageBgColor}
         >
-          <GridItem
-            pl="2"
-            area="nav"
-            padding="0px"
-            borderWidth={borderWidth}
-            borderRadius="10px"
-            borderColor="black"
-            bg={sectionBgColor}
-          >
-          </GridItem>
           <GridItem pl="2" area="tickers" padding="0px">
             <TickerBoard myTickers={tickerBoard}></TickerBoard>
           </GridItem>
