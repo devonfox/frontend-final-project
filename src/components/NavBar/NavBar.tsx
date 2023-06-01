@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, textDecoration } from "@chakra-ui/react";
 import React from "react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import {
@@ -33,7 +33,7 @@ const NavBar = () => {
           />
         <MenuList bg={menuColor}>
 
-          <Link href="/tests/graphtoggle">
+          <Link href="/tests/graphtoggle" style={{textDecoration: "none"}}>
           <MenuItem
             bg={"inherit"}
             _hover={hoverColor}
@@ -43,7 +43,7 @@ const NavBar = () => {
           </MenuItem>
           </Link>
 
-          <Link href="/tests/grid">
+          <Link href="/tests/grid" style={{textDecoration: "none"}}>
             <MenuItem
               bg={"inherit"}
               _hover={hoverColor}
@@ -53,7 +53,7 @@ const NavBar = () => {
             </MenuItem>
           </Link>
 
-          <Link href="/tests/home">
+          <Link href="/tests/home" style={{textDecoration: "none"}}>
             <MenuItem
               bg={"inherit"}
               _hover={hoverColor}
