@@ -5,8 +5,12 @@ import GraphGrid from "@/components/ContentGrid/ContentGrid";
 import { Grid, GridItem} from "@chakra-ui/react";
 import { generateTickers } from "./contentGenerator";
 import TickerBoard from "@/components/TickerBoard/TickerBoard";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+
   // TOGGLE CARD CREATION START
   const chartTestStyle: React.CSSProperties = {
     width: "400px",
@@ -98,21 +102,10 @@ export default function Home() {
           paddingX={{ sm: "20px", md: "30px" }}
           paddingTop={"15px"}
           backgroundColor={pageBgColor}
-        >
-          <GridItem
-            pl="2"
-            area="nav"
-            padding="0px"
-            borderWidth={borderWidth}
-            borderRadius="10px"
-            borderColor="black"
-            bg={sectionBgColor}
           >
-          </GridItem>
           <GridItem pl="2" area="tickers" padding="0px">
             <TickerBoard myTickers={tickerBoard}></TickerBoard>
           </GridItem>
-
           <GridItem
             pl="2"
             area="graphs"
