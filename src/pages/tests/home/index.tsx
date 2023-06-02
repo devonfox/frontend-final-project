@@ -2,9 +2,10 @@ import React from "react";
 import GraphCard from "@/components/GraphCard/GraphCard";
 import { chartListType, tickerBoxType, toggleCardType } from "@/types";
 import GraphGrid from "@/components/ContentGrid/ContentGrid";
-import { Grid, GridItem, Box, Center } from "@chakra-ui/react";
+import { Grid, GridItem} from "@chakra-ui/react";
 import { generateTickers } from "./contentGenerator";
 import TickerBoard from "@/components/TickerBoard/TickerBoard";
+import NavBar from "@/components/NavBar/NavBar";
 
 export default function Home() {
   // TOGGLE CARD CREATION START
@@ -85,18 +86,19 @@ export default function Home() {
   return (
     <>
       <main>
+      <NavBar></NavBar>
         <Grid
           templateAreas={`
-                        "nav nav"
                         "tickers tickers"
                         "graphs graphs"`}
-          gridTemplateRows="5rem auto auto 1fr 1fr"
+          gridTemplateRows="auto auto 1fr 1fr"
           gridTemplateColumns="5fr 3fr"
           gap="3"
           color="blackAlpha.700"
           fontWeight="bold"
           height="100%"
           paddingX={{ sm: "20px", md: "30px" }}
+          paddingTop={"15px"}
           backgroundColor={pageBgColor}
         >
           <GridItem
@@ -108,7 +110,6 @@ export default function Home() {
             borderColor="black"
             bg={sectionBgColor}
           >
-            Nav
           </GridItem>
           <GridItem pl="2" area="tickers" padding="0px">
             <TickerBoard myTickers={tickerBoard}></TickerBoard>
