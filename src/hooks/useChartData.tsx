@@ -82,7 +82,6 @@ export function useChartData(symbol: string) {
         if (response.ok) {
           const data = await response.json();
           name = data.results["name"];
-          nameFetchedSuccessfully = true;
         } else {
           console.error(`Failed to fetch name data for ${symbol}`);
           return;
@@ -96,7 +95,7 @@ export function useChartData(symbol: string) {
     };
 
     fetchData().finally(() => setChartLoading(false));
-  }, [dates, symbol]);
+  }, [symbol]);
 
   return { chartData: chartData, chartLoading: chartLoading };
 }
