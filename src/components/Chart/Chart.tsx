@@ -6,11 +6,12 @@ import {
   LineChart,
   ResponsiveContainer,
   Tooltip,
+  TooltipProps,
   XAxis,
   YAxis,
 } from "recharts";
+import { Text, Spinner, Center } from "@chakra-ui/react";
 import { useChartData } from "@/hooks/useChartData";
-
 export enum ChartType {
   LineChart = "LineChart",
   PieChart = "PieChart",
@@ -19,38 +20,115 @@ export enum ChartType {
 interface ChartProps {
   symbol: string;
   type?: ChartType;
+  height?: number;
+  width?: string | number;
 }
 
 const Chart = (props: ChartProps) => {
-  const { symbol } = props;
-  const tickerData = useChartData(symbol);
+  const { symbol, height, width } = props;
+  const { chartData, chartLoading } = useChartData(symbol);
 
-  const minPrice = Math.min(...tickerData.priceData.map((data) => data.price));
-  const maxPrice = Math.max(...tickerData.priceData.map((data) => data.price));
+  const minPrice = Math.min(...chartData.priceData.map((data) => data.price));
+  const maxPrice = Math.max(...chartData.priceData.map((data) => data.price));
 
-  return (
+  return !chartLoading ? (
     <div>
-      {tickerData.name}
-      <ResponsiveContainer width="100%" height={300}>
+      <Text fontWeight={"bold"} align={"center"} fontSize={"1.2rem"}>
+        {chartData.name}
+      </Text>
+      <ResponsiveContainer width={width ?? "100%"} height={height ?? 300}>
         <LineChart
-          data={tickerData.priceData}
-          margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
+          data={chartData.priceData}
+          margin={{ top: 10, right: 30, left: 10, bottom: 10 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis domain={[minPrice, maxPrice]} />
-          <Tooltip />
-          <Legend />
+          <XAxis
+            dataKey="date"
+            tick={{ fontSize: "1rem" }}
+            tickMargin={10}
+            tickFormatter={(tickItem) => `${formatDate(tickItem)}`}
+          />
+          <YAxis
+            domain={[minPrice, maxPrice]}
+            tick={{ fontSize: "1rem" }}
+            tickFormatter={(tickItem) => `$${tickItem.toFixed(2)}`}
+            tickMargin={10}
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend
+            wrapperStyle={{ bottom: 0, paddingLeft: 20, paddingRight: 20 }}
+          />
+
           <Line
             type="monotone"
             dataKey="price"
             stroke="#8884d8"
-            activeDot={{ r: 4 }}
+            strokeWidth={4}
+            activeDot={{ r: 8 }}
           />
         </LineChart>
       </ResponsiveContainer>
     </div>
+  ) : (
+    <Center height={height ?? 300} width="100%">
+      <Spinner size="lg" />
+    </Center>
   );
+};
+
+function formatDate(dateStr: string): string {
+  const monthNames: string[] = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const suffixes: { [key: number]: string } = {
+    1: "st",
+    2: "nd",
+    3: "rd",
+    21: "st",
+    22: "nd",
+    23: "rd",
+    31: "st",
+  };
+
+  const date: Date = new Date(dateStr);
+
+  const monthIndex: number = date.getMonth();
+  const monthName: string = monthNames[monthIndex];
+
+  const day: number = date.getDate();
+  const daySuffix: string = suffixes[day] || "th";
+
+  return `${monthName} ${day}${daySuffix}`;
+}
+
+const CustomTooltip = ({
+  active,
+  payload,
+  label,
+}: TooltipProps<any, number>) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label">{`${formatDate(
+          label,
+        )} : $${payload[0].value.toFixed(2)}`}</p>
+      </div>
+    );
+  }
+
+  return null;
 };
 
 export default Chart;

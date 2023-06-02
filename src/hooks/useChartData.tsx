@@ -16,56 +16,7 @@ const INIT_DATA: TickerChart = {
   priceData: [],
 };
 
-export function useChartData(symbol: string) {
-  const [tickerData, setTickerData] = useState<TickerChart>(INIT_DATA);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [name, setName] = useState<string>("");
-
-  const dates: string[] = getLastFiveDays();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const priceData: TickerChartData[] = [];
-      for (let i = 4; i >= 0; i--) {
-        try {
-          const response = await fetch(
-            `/api/polygonClosePrice?symbol=${symbol}&date=${dates[i]}`,
-          );
-          if (response.ok) {
-            const data = await response.json();
-            const price = data["close"];
-            const date = dates[i];
-            priceData.push({ date: date, price: price });
-          } else {
-            console.error(`Failed to fetch price data for ${dates[i]}`);
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      }
-      try {
-        const response = await fetch(`/api/polygonDetail?symbol=${symbol}`);
-        if (response.ok) {
-          const data = await response.json();
-          setName(data.results["name"]);
-        } else {
-          console.error(`Failed to fetch name data for ${symbol}`);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-      setTickerData({ name, priceData });
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [name, dates, symbol]);
-
-  return tickerData;
-}
-
-const BANK_HOLIDAYS = ["2023-05-29", "2023-12-25", "2023-12-26", "2023-01-01"]; // Add more dates as needed
-
+const BANK_HOLIDAYS = ["2023-05-29", "2023-12-25", "2023-12-26", "2023-01-01"];
 const getLastFiveDays = () => {
   const today = new Date();
   const lastFiveDays = [];
@@ -93,3 +44,59 @@ const getLastFiveDays = () => {
 
   return lastFiveDays;
 };
+
+export function useChartData(symbol: string) {
+  const [chartData, setChartData] = useState<TickerChart>(INIT_DATA);
+  const [chartLoading, setChartLoading] = useState<boolean>(true);
+
+  const dates: string[] = getLastFiveDays();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const priceData: TickerChartData[] = [];
+      let name: string = "";
+      let nameFetchedSuccessfully: boolean = false;
+
+      for (let i = 4; i >= 0; i--) {
+        try {
+          const response = await fetch(
+            `/api/polygonClosePrice?symbol=${symbol}&date=${dates[i]}`,
+          );
+          if (response.ok) {
+            const data = await response.json();
+            const price = data["close"];
+            const date = dates[i];
+            priceData.push({ date: date, price: price });
+          } else {
+            console.error(`Failed to fetch price data for ${dates[i]}`);
+            return;
+          }
+        } catch (error) {
+          console.error(error);
+          return;
+        }
+      }
+
+      try {
+        const response = await fetch(`/api/polygonDetail?symbol=${symbol}`);
+        if (response.ok) {
+          const data = await response.json();
+          name = data.results["name"];
+          nameFetchedSuccessfully = true;
+        } else {
+          console.error(`Failed to fetch name data for ${symbol}`);
+          return;
+        }
+      } catch (error) {
+        console.error(error);
+        return;
+      }
+
+      setChartData({ name, priceData });
+    };
+
+    fetchData().finally(() => setChartLoading(false));
+  }, [dates, symbol]);
+
+  return { chartData: chartData, chartLoading: chartLoading };
+}
