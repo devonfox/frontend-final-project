@@ -24,18 +24,17 @@ const getLastFiveDays = () => {
 
   while (lastFiveDays.length < 5) {
     const date = new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate() - i,
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate() - i
     );
 
     const formattedDate = date.toISOString().split("T")[0];
 
-    // Check if the date is not a weekend and not a bank holiday
     if (
-      date.getDay() !== 6 &&
-      date.getDay() !== 0 &&
-      !BANK_HOLIDAYS.includes(formattedDate)
+        (date.getDay() !== 6 && date.getDay() !== 0) &&
+        !BANK_HOLIDAYS.includes(formattedDate) &&
+        (i > 0 || today.getHours() >= 17)
     ) {
       lastFiveDays.push(formattedDate);
     }
@@ -44,6 +43,7 @@ const getLastFiveDays = () => {
 
   return lastFiveDays;
 };
+
 
 export function useChartData(symbol: string) {
   const [chartData, setChartData] = useState<TickerChart>(INIT_DATA);

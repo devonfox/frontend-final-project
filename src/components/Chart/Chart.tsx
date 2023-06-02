@@ -39,7 +39,7 @@ const Chart = (props: ChartProps) => {
       <ResponsiveContainer width={width ?? "100%"} height={height ?? 300}>
         <LineChart
           data={chartData.priceData}
-          margin={{ top: 10, right: 30, left: 10, bottom: 10 }}
+          margin={{ top: 10, right: 30, left: 20, bottom: 10 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
@@ -55,9 +55,6 @@ const Chart = (props: ChartProps) => {
             tickMargin={10}
           />
           <Tooltip content={<CustomTooltip />} />
-          <Legend
-            wrapperStyle={{ bottom: 0, paddingLeft: 20, paddingRight: 20 }}
-          />
 
           <Line
             type="monotone"
@@ -104,14 +101,15 @@ function formatDate(dateStr: string): string {
 
   const date: Date = new Date(dateStr);
 
-  const monthIndex: number = date.getMonth();
+  const monthIndex: number = date.getUTCMonth();
   const monthName: string = monthNames[monthIndex];
 
-  const day: number = date.getDate();
+  const day: number = date.getUTCDate();
   const daySuffix: string = suffixes[day] || "th";
 
   return `${monthName} ${day}${daySuffix}`;
 }
+
 
 const CustomTooltip = ({
   active,
