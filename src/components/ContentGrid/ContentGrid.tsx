@@ -1,7 +1,8 @@
 import { chartListType, chartType } from '@/types';
 import { Box, Grid } from '@chakra-ui/react';
+import React from 'react';
 
-const ContentGrid = ({ myCharts }: { myCharts: chartListType }) => {
+function ContentGrid({ myCharts }: { myCharts: chartListType }) {
   return (
     <Grid
       templateColumns={myCharts.templateColumns}
@@ -10,13 +11,13 @@ const ContentGrid = ({ myCharts }: { myCharts: chartListType }) => {
       placeItems="center"
       margin="auto"
       gridGap={myCharts.gap}
-      paddingX={"20px"}
-      >
+      paddingX="20px"
+    >
       {myCharts.stockCharts.map((stockChart: chartType) => (
         <Box key={stockChart.id}>{stockChart.chart}</Box>
       ))}
     </Grid>
   );
-};
+}
 
 export default ContentGrid;
