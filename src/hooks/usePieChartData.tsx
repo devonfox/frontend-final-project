@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 interface PieChart {
   assets: {
@@ -11,14 +11,14 @@ interface PieChart {
 
 const INIT_DATA: PieChart = {
   assets: {
-    currency: "",
+    currency: '',
     value: 0,
   },
   equities: 0,
   liabilities: 0,
 };
 
-export function usePieChartData(symbol: string) {
+export default function usePieChartData(symbol: string) {
   const [chartData, setChartData] = useState<PieChart>(INIT_DATA);
   const [chartLoading, setChartLoading] = useState<boolean>(true);
 
@@ -32,29 +32,26 @@ export function usePieChartData(symbol: string) {
         const response = await fetch(`/api/polygonFinancials?symbol=${symbol}`);
         if (response.ok) {
           const data = await response.json();
-          value =
-            data["results"][0].financials.balance_sheet.current_assets.value;
-          equities = data["results"]["equities"];
-          liabilities = data["results"]["liabilities"];
+          value = data.results[0].financials.balance_sheet.current_assets.value;
+          equities = data.results.equities;
+          liabilities = data.results.liabilities;
           setChartData({
             assets: {
-              currency: "USD",
-              value: value,
+              currency: 'USD',
+              value,
             },
             equities,
             liabilities,
           });
         } else {
-          console.error(`Failed to fetch data`);
-          return;
+          console.error('Failed to fetch data');
         }
       } catch (error) {
         console.error(error);
-        return;
       }
     };
     fetchData().finally(() => setChartLoading(false));
   }, [symbol]);
 
-  return { chartData: chartData, chartLoading: chartLoading };
+  return { chartData, chartLoading };
 }

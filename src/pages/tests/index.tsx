@@ -1,26 +1,22 @@
-
-
 import Link from 'next/link';
+import React from 'react';
 
 function Tests() {
-    return (
-        <ul>
-            <li>
-            <Link href="/tests/graphtoggle">Graph Toggle</Link>
-            </li>
-            <li>
-            <Link href="/tests/grid">Graph Grid</Link>
-            </li>
-            <li>
-            <Link href="/tests/home">HomePage Test</Link>
-            </li>
-            <li>
-                <Link href="/tests/chart">Single Chart</Link>
-            </li>
-            <li>
-            <Link href="/tests/tickerdisplaytest">Ticker Display</Link>
-            </li>
-        </ul>
+  return (
+    <ul>
+      <li>
+        <Link href="/tests/graphtoggle">Graph Toggle</Link>
+      </li>
+      <li>
+        <Link href="/tests/grid">Graph Grid</Link>
+      </li>
+      <li>
+        <Link href="/tests/chart">Single Chart</Link>
+      </li>
+      <li>
+        <Link href="/tests/tickerdisplaytest">Ticker Display</Link>
+      </li>
+    </ul>
   );
 }
 

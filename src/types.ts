@@ -1,4 +1,4 @@
-import { Key, ReactNode } from "react";
+import React, { Key, ReactNode } from 'react';
 
 export type chartType = {
     id: Key | null | undefined;
@@ -30,7 +30,7 @@ export type tickerListType = {
     stockTickers: Array<tickerType>;
 };
 
-export type tickerObjectType  = {
+export type tickerObjectType = {
     data: tickerDataType;
     id: number;
   }
