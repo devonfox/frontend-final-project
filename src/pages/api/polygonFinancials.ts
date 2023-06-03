@@ -7,9 +7,9 @@ export default async function handler(
   const { symbol } = req.query;
   const apiKey = process.env.POLYGON_API_KEY as string;
 
-  try {
+  https: try {
     const response = await fetch(
-      `https://api.polygon.io/v3/reference/tickers/${symbol}?apiKey=${apiKey}`,
+      `https://api.polygon.io/vX/reference/financials?ticker=${symbol}&apiKey=${apiKey}`,
     );
     const data: { data: any } = await response.json();
     res.status(200).json(data);

@@ -14,8 +14,11 @@ function Tests() {
             <li>
             <Link href="/tests/home">HomePage Test</Link>
             </li>
-        </ul>
-    );
+      <li>
+        <Link href="/tests/chart">Single Chart</Link>
+      </li>
+    </ul>
+  );
 }
 
 export default Tests;
