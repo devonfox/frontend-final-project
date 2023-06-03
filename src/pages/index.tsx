@@ -2,12 +2,11 @@ import React from "react";
 import GraphCard from "@/components/GraphCard/GraphCard";
 import { chartListType, tickerBoxType, toggleCardType } from "@/types";
 import GraphGrid from "@/components/ContentGrid/ContentGrid";
-import { Grid, GridItem} from "@chakra-ui/react";
-import { generateTickers } from "./contentGenerator";
+import { Grid, GridItem } from "@chakra-ui/react";
 import TickerBoard from "@/components/TickerBoard/TickerBoard";
+import generateTickers from "@/pages/contentGenerator";
 
 export default function Home() {
-
   // TOGGLE CARD CREATION START
   const chartTestStyle: React.CSSProperties = {
     width: "400px",

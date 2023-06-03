@@ -1,10 +1,10 @@
 import { Box } from "@chakra-ui/react";
-import Chart from "@/components/Chart/Chart";
+import ChartLine from "@/components/Chart/ChartLine";
 
 const chartPage = () => {
   return (
     <Box m={5}>
-      <Chart symbol={"EBAY"} />
+      <LineChart symbol={"EBAY"} />
     </Box>
   );
 };

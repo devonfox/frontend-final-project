@@ -47,7 +47,7 @@ const getLastNthDays = (days: number) => {
   return lastNthDays;
 };
 
-export function useChartData(symbol: string) {
+export function useLineChartData(symbol: string) {
   const [chartData, setChartData] = useState<TickerChart>(INIT_DATA);
   const [chartLoading, setChartLoading] = useState<boolean>(true);
 

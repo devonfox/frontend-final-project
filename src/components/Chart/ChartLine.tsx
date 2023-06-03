@@ -1,7 +1,6 @@
 import React from "react";
 import {
   CartesianGrid,
-  Legend,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -11,22 +10,17 @@ import {
   YAxis,
 } from "recharts";
 import { Text, Spinner, Center } from "@chakra-ui/react";
-import { useChartData } from "@/hooks/useChartData";
-export enum ChartType {
-  LineChart = "LineChart",
-  PieChart = "PieChart",
-}
+import { useLineChartData } from "@/hooks/useLineChartData";
 
 interface ChartProps {
   symbol: string;
-  type?: ChartType;
   height?: number;
   width?: string | number;
 }
 
-const Chart = (props: ChartProps) => {
+const ChartLine = (props: ChartProps) => {
   const { symbol, height, width } = props;
-  const { chartData, chartLoading } = useChartData(symbol);
+  const { chartData, chartLoading } = useLineChartData(symbol);
 
   const minPrice = Math.min(...chartData.priceData.map((data) => data.price));
   const maxPrice = Math.max(...chartData.priceData.map((data) => data.price));
@@ -110,7 +104,6 @@ function formatDate(dateStr: string): string {
   return `${monthName} ${day}${daySuffix}`;
 }
 
-
 const CustomTooltip = ({
   active,
   payload,
@@ -129,4 +122,4 @@ const CustomTooltip = ({
   return null;
 };
 
-export default Chart;
+export default ChartLine;
