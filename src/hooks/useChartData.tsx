@@ -11,53 +11,54 @@ interface TickerChartData {
   price: number;
 }
 
+const DAY_RANGE: number = 5;
+
 const INIT_DATA: TickerChart = {
   name: "init",
   priceData: [],
 };
 
 const BANK_HOLIDAYS = ["2023-05-29", "2023-12-25", "2023-12-26", "2023-01-01"];
-const getLastFiveDays = () => {
+const getLastNthDays = (days: number) => {
   const today = new Date();
-  const lastFiveDays = [];
+  const lastNthDays = [];
   let i = 0;
 
-  while (lastFiveDays.length < 5) {
+  while (lastNthDays.length < days) {
     const date = new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate() - i
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() - i,
     );
 
     const formattedDate = date.toISOString().split("T")[0];
 
     if (
-        (date.getDay() !== 6 && date.getDay() !== 0) &&
-        !BANK_HOLIDAYS.includes(formattedDate) &&
-        (i > 0 || today.getHours() >= 17)
+      date.getDay() !== 6 &&
+      date.getDay() !== 0 &&
+      !BANK_HOLIDAYS.includes(formattedDate) &&
+      (i > 0 || today.getHours() >= 17)
     ) {
-      lastFiveDays.push(formattedDate);
+      lastNthDays.push(formattedDate);
     }
     i++;
   }
 
-  return lastFiveDays;
+  return lastNthDays;
 };
-
 
 export function useChartData(symbol: string) {
   const [chartData, setChartData] = useState<TickerChart>(INIT_DATA);
   const [chartLoading, setChartLoading] = useState<boolean>(true);
 
-  const dates: string[] = getLastFiveDays();
+  const dates: string[] = getLastNthDays(DAY_RANGE);
 
   useEffect(() => {
     const fetchData = async () => {
       const priceData: TickerChartData[] = [];
       let name: string = "";
-      let nameFetchedSuccessfully: boolean = false;
 
-      for (let i = 4; i >= 0; i--) {
+      for (let i = DAY_RANGE - 1; i >= 0; i--) {
         try {
           const response = await fetch(
             `/api/polygonClosePrice?symbol=${symbol}&date=${dates[i]}`,
