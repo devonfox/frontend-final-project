@@ -1,15 +1,16 @@
 import React from "react";
 import GraphCard from "@/components/GraphCard/GraphCard";
-import { chartListType, tickerBoxType, toggleCardType } from "@/types";
+import { chartListType, tickerBoxType, tickerDataType, toggleCardType } from "@/types";
 import GraphGrid from "@/components/ContentGrid/ContentGrid";
 import { Grid, GridItem} from "@chakra-ui/react";
-import { generateTickers } from "./contentGenerator";
 import TickerBoard from "@/components/TickerBoard/TickerBoard";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { useEffect, useState } from "react";
+import { tickerObjectType } from "@/types";
+import { generateTickerData } from "./contentGenerator";
 
 export default function Home() {
+  const [tickersLeft, setTickersLeft] = useState<tickerObjectType[]>([]);
+  const [tickersRight, setTickersRight] = useState<tickerObjectType[]>([]);
 
   // TOGGLE CARD CREATION START
   const chartTestStyle: React.CSSProperties = {
@@ -42,29 +43,21 @@ export default function Home() {
   };
   // TOGGLE CARD CREATION END
 
-  // Generate Rectangles for ticker mockup
-  const tickersLeft: chartListType = generateTickers(
-    "0px",
-    "250px",
-    "50px",
-    20,
-    "5rem",
-    "repeat(auto-fit, minmax(20rem, 1fr))",
-  );
-  const tickersRight: chartListType = generateTickers(
-    "0px",
-    "250px",
-    "50px",
-    10,
-    "5rem",
-    "repeat(auto-fit, minmax(20rem, 1fr))",
-  );
-
   const lightGray = "rgb(221,221,221)";
   const darkGray = "rgb(68,68,68)";
   const sectionBgColor = lightGray;
   const pageBgColor = darkGray;
   const borderWidth = "2px";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const leftData = await generateTickerData(50);
+      const rightData = await generateTickerData(25);
+      setTickersLeft(leftData);
+      setTickersRight(rightData);
+    };
+    fetchData();
+  }, []);
 
   // Usage:
   const exampleCharts: chartListType = {
@@ -102,10 +95,11 @@ export default function Home() {
           paddingX={{ sm: "20px", md: "30px" }}
           paddingTop={"15px"}
           backgroundColor={pageBgColor}
-          >
+        >
           <GridItem pl="2" area="tickers" padding="0px">
             <TickerBoard myTickers={tickerBoard}></TickerBoard>
           </GridItem>
+
           <GridItem
             pl="2"
             area="graphs"

@@ -17,9 +17,23 @@ export type tickerType = {
     ticker: any;
 }
 
+export type tickerDataType = {
+    ticker: string,
+    price: string,
+    percent_change: string,
+    market_cap: string,
+    volume: string,
+    dividend_yield: string
+};
+
 export type tickerListType = {
     stockTickers: Array<tickerType>;
 };
+
+export type tickerObjectType  = {
+    data: tickerDataType;
+    id: number;
+  }
 
 export type toggleCardType = {
     lineChart: any;

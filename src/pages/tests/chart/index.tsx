@@ -4,7 +4,7 @@ import ChartLine from "@/components/Chart/ChartLine";
 const chartPage = () => {
   return (
     <Box m={5}>
-      <LineChart symbol={"EBAY"} />
+      <ChartLine symbol={"AAPL"} />
     </Box>
   );
 };

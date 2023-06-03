@@ -28,7 +28,7 @@ const ChartLine = (props: ChartProps) => {
   return !chartLoading ? (
     <div>
       <Text fontWeight={"bold"} align={"center"} fontSize={"1.2rem"}>
-        {chartData.name}
+        {chartData?.name}
       </Text>
       <ResponsiveContainer width={width ?? "100%"} height={height ?? 300}>
         <LineChart

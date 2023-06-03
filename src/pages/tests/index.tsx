@@ -14,10 +14,13 @@ function Tests() {
             <li>
             <Link href="/tests/home">HomePage Test</Link>
             </li>
-      <li>
-        <Link href="/tests/chart">Single Chart</Link>
-      </li>
-    </ul>
+            <li>
+                <Link href="/tests/chart">Single Chart</Link>
+            </li>
+            <li>
+            <Link href="/tests/tickerdisplay">Ticker Display</Link>
+            </li>
+        </ul>
   );
 }
 

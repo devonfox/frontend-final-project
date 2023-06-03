@@ -1,34 +1,26 @@
-import React from "react";
-import { chartListType } from "@/types";
-import { Box } from "@chakra-ui/react";
+import { tickerDataType } from "@/types";
+import { faker } from '@faker-js/faker';
+import { sp500Tickers } from "../tests/tickerdisplaytest/tickerSymbolData";
+import shuffle from "just-shuffle";
+import { tickerObjectType } from "@/types";
 
-export function generateTickers(
-  gap: string,
-  width: string,
-  height: string,
-  quantity: number,
-  verticalSpacing: string,
-  templateColumns: string,
-): chartListType {
-  const tickers = (
+export async function generateTickerData( num: number) {
+  const testData: tickerObjectType[] = [];
+  let stockData = sp500Tickers;
+  stockData = shuffle(stockData, {shuffleAll: true});
+  for (let index = 0; index < num; index++) {
+      const tickerline =
+      {
+        ticker: stockData[index],
+        price: `$ ${faker.finance.amount()}`,
+        percent_change: faker.finance.amount(),
+        market_cap: faker.finance.amount(),
+        volume: faker.finance.amount(),
+        dividend_yield: faker.finance.amount(),
+      }
+      testData.push(
+        { id: index, data: tickerline })
+      }
+  return testData
 
-      <Box width={width} height={height} bg="black" />
-
-  );
-
-  const gridCards = () => {
-    let stockCharts = [];
-    for (let index = 0; index < quantity; index++) {
-      stockCharts.push({ id: index, chart: tickers });
-    }
-    return stockCharts;
-  };
-
-  const tickerPack: chartListType = {
-    gap: gap,
-    stockCharts: gridCards(),
-    verticalSpacing: verticalSpacing,
-    templateColumns: templateColumns
-  };
-  return tickerPack;
 }
