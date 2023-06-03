@@ -2,14 +2,14 @@ import React from "react";
 import { chartListType } from "@/types";
 import { Box } from "@chakra-ui/react";
 
-export function generateTickers(
+export const GenerateTickers = (
   gap: string,
   width: string,
   height: string,
   quantity: number,
   verticalSpacing: string,
   templateColumns: string,
-): chartListType {
+): chartListType  => {
   const tickers = (
 
       <Box width={width} height={height} bg="black" />

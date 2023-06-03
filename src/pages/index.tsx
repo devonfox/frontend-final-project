@@ -6,7 +6,7 @@ import { Grid, GridItem} from "@chakra-ui/react";
 import TickerBoard from "@/components/TickerBoard/TickerBoard";
 import { useEffect, useState } from "react";
 import { tickerObjectType } from "@/types";
-import { generateTickerData } from "./contentGenerator";
+import { GenerateTickerData } from "./contentGenerator";
 
 export default function Home() {
   const [tickersLeft, setTickersLeft] = useState<tickerObjectType[]>([]);
@@ -51,8 +51,8 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const leftData = await generateTickerData(50);
-      const rightData = await generateTickerData(25);
+      const leftData = await GenerateTickerData(50);
+      const rightData = await GenerateTickerData(25);
       setTickersLeft(leftData);
       setTickersRight(rightData);
     };

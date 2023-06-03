@@ -4,7 +4,7 @@ import { sp500Tickers } from "./tests/tickerdisplaytest/tickerSymbolData";
 import shuffle from "just-shuffle";
 import { tickerObjectType } from "@/types";
 
-export const generateTickerData = ( num: number) => {
+export const GenerateTickerData = ( num: number) => {
   const testData: tickerObjectType[] = [];
   let stockData = sp500Tickers;
   stockData = shuffle(stockData, {shuffleAll: true});
@@ -22,5 +22,4 @@ export const generateTickerData = ( num: number) => {
         { id: index, data: tickerline })
       }
   return testData
-
 }

@@ -28,12 +28,10 @@ async function generateTickerData( num: number) {
 
 const ChartsPage = () => {
     const [tickersLeft, setTickersLeft] = useState<tickerObjectType[]>([]);
-    const tickers = shuffle(sp500Tickers, {shuffleAll:true})
 
     useEffect(() => {
         const fetchData = async () => {
           const leftData = await generateTickerData(50);
-          const rightData = await generateTickerData(25);
           setTickersLeft(leftData);
         };
         fetchData();

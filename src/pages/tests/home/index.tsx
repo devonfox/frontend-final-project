@@ -3,7 +3,7 @@ import GraphCard from "@/components/GraphCard/GraphCard";
 import { chartListType, tickerBoxType, toggleCardType } from "@/types";
 import GraphGrid from "@/components/ContentGrid/ContentGrid";
 import { Grid, GridItem} from "@chakra-ui/react";
-import { generateTickers } from "./contentGenerator";
+import { GenerateTickers } from "./contentGenerator";
 import TickerBoard from "@/components/TickerBoard/TickerBoard";
 
 export default function Home() {
@@ -39,7 +39,7 @@ export default function Home() {
   // TOGGLE CARD CREATION END
 
   // Generate Rectangles for ticker mockup
-  const tickersLeft: chartListType = generateTickers(
+  const tickersLeft: chartListType = GenerateTickers(
     "0px",
     "250px",
     "50px",
@@ -47,7 +47,7 @@ export default function Home() {
     "5rem",
     "repeat(auto-fit, minmax(20rem, 1fr))",
   );
-  const tickersRight: chartListType = generateTickers(
+  const tickersRight: chartListType = GenerateTickers(
     "0px",
     "250px",
     "50px",
