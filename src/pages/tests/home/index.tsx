@@ -7,7 +7,6 @@ import { generateTickers } from "./contentGenerator";
 import TickerBoard from "@/components/TickerBoard/TickerBoard";
 
 export default function Home() {
-
   // TOGGLE CARD CREATION START
   const chartTestStyle: React.CSSProperties = {
     width: "400px",
@@ -100,6 +99,16 @@ export default function Home() {
           paddingTop={"15px"}
           backgroundColor={pageBgColor}
         >
+          <GridItem
+            pl="2"
+            area="nav"
+            padding="0px"
+            borderWidth={borderWidth}
+            borderRadius="10px"
+            borderColor="black"
+            bg={sectionBgColor}
+          >
+          </GridItem>
           <GridItem pl="2" area="tickers" padding="0px">
             <TickerBoard myTickers={tickerBoard}></TickerBoard>
           </GridItem>
