@@ -16,12 +16,12 @@ const TickerDisplay = ( { tickerData }: {tickerData: tickerObjectType[] }) => {
     tickerData.forEach(element => {
         tickers.push(
         <Tr key={element.id}>
-            <Td>{element.data.ticker}</Td>
-            <Td>{element.data.price}</Td>
-            <Td>{element.data.percent_change}</Td>
-            <Td>{element.data.market_cap}</Td>
-            <Td>{element.data.volume}</Td>
-            <Td>{element.data.dividend_yield}</Td>
+            <Td fontStyle={"italic"} fontWeight={"semibold"}>{element.data.ticker}</Td>
+            <Td fontStyle={"italic"} fontWeight={"semibold"}>{element.data.price}</Td>
+            <Td fontStyle={"italic"} fontWeight={"semibold"}>{element.data.percent_change}</Td>
+            <Td fontStyle={"italic"} fontWeight={"semibold"}>{element.data.market_cap}</Td>
+            <Td fontStyle={"italic"} fontWeight={"semibold"}>{element.data.volume}</Td>
+            <Td fontStyle={"italic"} fontWeight={"semibold"}>{element.data.dividend_yield}</Td>
         </Tr>
         )
     });
