@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/require-default-props */
+import React from 'react';
 import {
   CartesianGrid,
   Line,
@@ -8,9 +9,9 @@ import {
   TooltipProps,
   XAxis,
   YAxis,
-} from "recharts";
-import { Text, Spinner, Center } from "@chakra-ui/react";
-import { useLineChartData } from "@/hooks/useLineChartData";
+} from 'recharts';
+import { Text, Spinner, Center } from '@chakra-ui/react';
+import useLineChartData from '@/hooks/useLineChartData';
 
 interface ChartProps {
   symbol: string;
@@ -18,7 +19,63 @@ interface ChartProps {
   width?: string | number;
 }
 
-const ChartLine = (props: ChartProps) => {
+function formatDate(dateStr: string): string {
+  const monthNames: string[] = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
+  const suffixes: { [key: number]: string } = {
+    1: 'st',
+    2: 'nd',
+    3: 'rd',
+    21: 'st',
+    22: 'nd',
+    23: 'rd',
+    31: 'st',
+  };
+
+  const date: Date = new Date(dateStr);
+
+  const monthIndex: number = date.getUTCMonth();
+  const monthName: string = monthNames[monthIndex];
+
+  const day: number = date.getUTCDate();
+  const daySuffix: string = suffixes[day] || 'th';
+
+  return `${monthName} ${day}${daySuffix}`;
+}
+
+function CustomTooltip({
+  active,
+  payload,
+  label,
+}: TooltipProps<any, number>) {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label">
+          {`${formatDate(
+            label,
+          )} : $${payload[0].value.toFixed(2)}`}
+        </p>
+      </div>
+    );
+  }
+  return null;
+}
+
+function ChartLine(props: ChartProps) {
   const { symbol, height, width } = props;
   const { chartData, chartLoading } = useLineChartData(symbol);
 
@@ -27,24 +84,26 @@ const ChartLine = (props: ChartProps) => {
 
   return !chartLoading ? (
     <div>
-      <Text fontWeight={"bold"} align={"center"} fontSize={"1.2rem"}>
-        {chartData.name}
+      <Text fontWeight="bold" align="center" fontSize="1.2rem">
+        {chartData?.name}
       </Text>
-      <ResponsiveContainer width={width ?? "100%"} height={height ?? 300}>
+      <ResponsiveContainer width={width ?? '100%'} height={height ?? 300}>
         <LineChart
           data={chartData.priceData}
-          margin={{ top: 10, right: 30, left: 20, bottom: 10 }}
+          margin={{
+            top: 10, right: 30, left: 20, bottom: 10,
+          }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey="date"
-            tick={{ fontSize: "1rem" }}
+            tick={{ fontSize: '1rem' }}
             tickMargin={10}
             tickFormatter={(tickItem) => `${formatDate(tickItem)}`}
           />
           <YAxis
             domain={[minPrice, maxPrice]}
-            tick={{ fontSize: "1rem" }}
+            tick={{ fontSize: '1rem' }}
             tickFormatter={(tickItem) => `$${tickItem.toFixed(2)}`}
             tickMargin={10}
           />
@@ -65,61 +124,6 @@ const ChartLine = (props: ChartProps) => {
       <Spinner size="lg" />
     </Center>
   );
-};
-
-function formatDate(dateStr: string): string {
-  const monthNames: string[] = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  const suffixes: { [key: number]: string } = {
-    1: "st",
-    2: "nd",
-    3: "rd",
-    21: "st",
-    22: "nd",
-    23: "rd",
-    31: "st",
-  };
-
-  const date: Date = new Date(dateStr);
-
-  const monthIndex: number = date.getUTCMonth();
-  const monthName: string = monthNames[monthIndex];
-
-  const day: number = date.getUTCDate();
-  const daySuffix: string = suffixes[day] || "th";
-
-  return `${monthName} ${day}${daySuffix}`;
 }
-
-const CustomTooltip = ({
-  active,
-  payload,
-  label,
-}: TooltipProps<any, number>) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="custom-tooltip">
-        <p className="label">{`${formatDate(
-          label,
-        )} : $${payload[0].value.toFixed(2)}`}</p>
-      </div>
-    );
-  }
-
-  return null;
-};
 
 export default ChartLine;

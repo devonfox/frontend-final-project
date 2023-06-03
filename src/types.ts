@@ -1,4 +1,4 @@
-import { Key, ReactNode } from "react";
+import React, { Key, ReactNode } from 'react';
 
 export type chartType = {
     id: Key | null | undefined;
@@ -17,9 +17,23 @@ export type tickerType = {
     ticker: any;
 }
 
+export type tickerDataType = {
+    ticker: string,
+    price: string,
+    percent_change: string,
+    market_cap: string,
+    volume: string,
+    dividend_yield: string
+};
+
 export type tickerListType = {
     stockTickers: Array<tickerType>;
 };
+
+export type tickerObjectType = {
+    data: tickerDataType;
+    id: number;
+  }
 
 export type toggleCardType = {
     lineChart: any;
@@ -36,4 +50,5 @@ export type tickerBoxType = {
     borderRadius: string;
     borderColor: string;
     paddingY:any;
+    paddingX:any;
 }

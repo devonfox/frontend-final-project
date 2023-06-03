@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,7 +7,7 @@ export default async function handler(
   const { symbol } = req.query;
   const apiKey = process.env.POLYGON_API_KEY as string;
 
-  https: try {
+  try {
     const response = await fetch(
       `https://api.polygon.io/vX/reference/financials?ticker=${symbol}&apiKey=${apiKey}`,
     );
@@ -15,6 +15,6 @@ export default async function handler(
     res.status(200).json(data);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "An error occurred" });
+    res.status(500).json({ error: 'An error occurred' });
   }
 }
