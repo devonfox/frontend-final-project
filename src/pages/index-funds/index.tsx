@@ -77,6 +77,7 @@ export default function Home() {
     borderRadius: "10px",
     borderColor: "black",
     paddingY: "15px",
+    paddingX: "0px"
   };
 
   return (

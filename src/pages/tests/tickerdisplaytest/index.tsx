@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 import shuffle from 'just-shuffle';
 import { tickerObjectType } from "@/types";
 import { useEffect, useState } from "react";
-import TickerDisplay from "@/components/TickerDisplay/TickerDIsplay";
+import TickerDisplay from "@/components/TickerDisplay/TickerDisplay";
 
 async function generateTickerData( num: number) {
     const testData: tickerObjectType[] = [];
@@ -23,7 +23,7 @@ async function generateTickerData( num: number) {
         testData.push(
           { id: index, data: tickerline })
         }
-    return testData
+    return testData;
   }
 
 const ChartsPage = () => {

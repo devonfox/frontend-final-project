@@ -2,7 +2,7 @@ import React from "react";
 import { tickerBoxType } from "@/types";
 import ContentGrid from "@/components/ContentGrid/ContentGrid";
 import { Box } from "@chakra-ui/react";
-import TickerDisplay from "../TickerDisplay/TickerDIsplay";
+import TickerDisplay from "../TickerDisplay/TickerDisplay";
 
 const tickerBoard = ({ myTickers }: { myTickers: tickerBoxType }) => {
 
@@ -21,6 +21,7 @@ const tickerBoard = ({ myTickers }: { myTickers: tickerBoxType }) => {
         borderRadius={myTickers.borderRadius}
         borderColor="black"
         paddingY={myTickers.paddingY}
+        paddingX={myTickers.paddingX}
       >
         <TickerDisplay tickerData={myTickers?.leftTicker}></TickerDisplay>
 
@@ -33,6 +34,7 @@ const tickerBoard = ({ myTickers }: { myTickers: tickerBoxType }) => {
         borderRadius={myTickers.borderRadius}
         borderColor="black"
         paddingY={myTickers.paddingY}
+        paddingX={myTickers.paddingX}
       >
         <TickerDisplay tickerData={myTickers?.rightTicker}></TickerDisplay>
       </Box>

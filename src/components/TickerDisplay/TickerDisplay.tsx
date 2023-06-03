@@ -28,16 +28,16 @@ const TickerDisplay = ( { tickerData }: {tickerData: tickerObjectType[] }) => {
 
 
   return (
-<TableContainer bg={"black"} color={"white"}>
+<TableContainer bg={"none"} color={"skyblue"} >
 <Table size='sm' variant={"unstyled"}>
   <Thead>
     <Tr>
-    <Th>{"Sign"}</Th>
-    <Th>{"Price"}</Th>
-    <Th>{"Change"}</Th>
-    <Th>{"MC"}</Th>
-    <Th>{"Vol"}</Th>
-    <Th>{"DY"}</Th>
+    <Th fontWeight={"extrabold"} color={"white"} textDecorationLine={"underline"}>{"Symbol"}</Th>
+    <Th fontWeight={"extrabold"} color={"white"} textDecorationLine={"underline"}>{"Price"}</Th>
+    <Th fontWeight={"extrabold"} color={"white"} textDecorationLine={"underline"}>{"Change"}</Th>
+    <Th fontWeight={"extrabold"} color={"white"} textDecorationLine={"underline"}>{"MC"}</Th>
+    <Th fontWeight={"extrabold"} color={"white"} textDecorationLine={"underline"}>{"Vol"}</Th>
+    <Th fontWeight={"extrabold"} color={"white"} textDecorationLine={"underline"}>{"DY"}</Th>
     </Tr>
   </Thead>
   <Tbody>

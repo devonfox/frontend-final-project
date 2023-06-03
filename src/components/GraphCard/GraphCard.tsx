@@ -16,7 +16,7 @@ const GraphCard = ({ myCharts }: { myCharts: toggleCardType }) => {
   const iconDisplay="flex"
   const iconAlignItems="center"
   const iconJustifyContent="center"
-  const iconBackgroundColor="blue"
+  const iconBackgroundColor="rgb(100,180,220)"
   const iconBorderRadius="5px"
 
   const lineIcon = (

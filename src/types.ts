@@ -50,4 +50,5 @@ export type tickerBoxType = {
     borderRadius: string;
     borderColor: string;
     paddingY:any;
+    paddingX:any;
 }

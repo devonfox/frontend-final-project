@@ -44,15 +44,15 @@ export default function Home() {
   // TOGGLE CARD CREATION END
 
   const lightGray = "rgb(221,221,221)";
-  const darkGray = "rgb(68,68,68)";
-  const sectionBgColor = lightGray;
+  const darkGray = "rgb(20,20,25)";
+  const sectionBgColor = "rgb(0,0,0)";
   const pageBgColor = darkGray;
   const borderWidth = "2px";
 
   useEffect(() => {
     const fetchData = async () => {
-      const leftData = await GenerateTickerData(50);
-      const rightData = await GenerateTickerData(25);
+      const leftData = await GenerateTickerData(10);
+      const rightData = await GenerateTickerData(10);
       setTickersLeft(leftData);
       setTickersRight(rightData);
     };
@@ -70,13 +70,14 @@ export default function Home() {
   const tickerBoard: tickerBoxType = {
     leftTicker: tickersLeft,
     rightTicker: tickersRight,
-    leftPercent: "60%",
-    rightPercent: "40%",
+    leftPercent: "50%",
+    rightPercent: "50%",
     bg: sectionBgColor,
     borderWidth: borderWidth,
     borderRadius: "10px",
     borderColor: "black",
     paddingY: "15px",
+    paddingX: "15px",
   };
 
   return (

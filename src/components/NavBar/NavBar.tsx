@@ -11,13 +11,13 @@ import {
 import Link from "next/link";
 
 const NavBar = () => {
-  const menuColor = "grey";
-  const hoverColor = { bg: "white", color: "black" };
+  const menuColor = "rgb(0,0,0)";
+  const hoverColor = { bg: "skyblue", color: "black" };
   const textColor = "lightgrey";
 
   return (
     <Box
-      bg={"grey"}
+      bg={"rgb(0,0,0)"}
       display={"flex"}
       justifyContent={"flex-end"}
       paddingX={"10px"}
@@ -30,8 +30,11 @@ const NavBar = () => {
           icon={<HamburgerIcon />}
           variant="ghost"
           fontSize="2rem"
+          color={"skyblue"}
+          marginRight={"20px"}
+          _hover={hoverColor}
         />
-        <MenuList bg={menuColor}>
+        <MenuList bg={menuColor} borderColor={"skyblue"} padding={"0px"}>
           <Link href="/" style={{ textDecoration: "none" }}>
             <MenuItem bg={"inherit"} _hover={hoverColor} color={textColor}>
               Home
