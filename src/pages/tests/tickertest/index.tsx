@@ -18,7 +18,7 @@ function TickerTestFunc({ symbol }: tickerFuncProps) {
           {`MarketCap: ${tickerData.marketCap}`}
       </div>
       <div>
-          {`{Price}: ${tickerData.price}`}
+          {`Price: ${tickerData.price}`}
       </div>
       <div>
           {`PercentChange: ${tickerData.percentChange}`}
