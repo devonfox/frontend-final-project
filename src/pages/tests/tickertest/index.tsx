@@ -1,45 +1,48 @@
 import { Box } from '@chakra-ui/react';
 import React from 'react';
 import useTickerTableData from '@/hooks/useTickerTableData';
+import { tickerDataType } from '@/types';
 
 interface tickerFuncProps {
     symbol: string;
   }
 
 function TickerTestFunc({ symbol }: tickerFuncProps) {
-  const { tickerData, tickerLoading } = useTickerTableData(symbol);
+  const ticker: { tickerData: tickerDataType,
+      tickerLoading: Boolean,
+      dataUnavailable: Boolean } = useTickerTableData(symbol);
 
-  return !tickerLoading ? (
+  return !ticker.tickerLoading ? (
     <div>
       <div>
         Ticker:
         {' '}
-        {tickerData.ticker}
+        {ticker.tickerData.ticker}
       </div>
       <div>
         marketcap:
         {' '}
-        {tickerData.marketCap}
+        {ticker.tickerData.marketCap}
       </div>
       <div>
         price:
         {' '}
-        {tickerData.price}
+        {ticker.tickerData.price}
       </div>
       <div>
         percentchange:
         {' '}
-        {tickerData.percentChange}
+        {ticker.tickerData.percentChange}
       </div>
       <div>
         volume:
         {' '}
-        {tickerData.volume}
+        {ticker.tickerData.volume}
       </div>
       <div>
         percentYield:
         {' '}
-        {tickerData.dividendYield}
+        {ticker.tickerData.dividendYield}
       </div>
     </div>
   ) : (
