@@ -1,4 +1,4 @@
-const sp500Tickers = [
+const SP500Tickers = [
   'MMM',
   'AOS',
   'ABT',
@@ -506,4 +506,4 @@ const sp500Tickers = [
   'ZTS',
 ];
 
-export default sp500Tickers;
+export default SP500Tickers;

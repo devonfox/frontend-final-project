@@ -14,7 +14,7 @@ function Tests() {
         <Link href="/tests/chart">Single Chart</Link>
       </li>
       <li>
-        <Link href="/tests/tickerdisplaytest">Ticker Display</Link>
+        <Link href="/tests/tickertable">Ticker Table</Link>
       </li>
       <li>
         <Link href="/tests/tickertest">Ticker Data Test</Link>

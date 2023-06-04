@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import GraphCard from '@/components/GraphCard/GraphCard';
 import {
   chartListType, tickerBoxType, toggleCardType,
-  tickerObjectType,
 } from '@/types';
 import GraphGrid from '@/components/ContentGrid/ContentGrid';
 import { Grid, GridItem } from '@chakra-ui/react';
-import TickerBoard from '@/components/TickerBoard/TickerBoard';
-import GenerateTickerData from '@/utils/mockTickerData';
+import TickerSection from '@/components/TickerBoard/TickerSection';
+import SP500Tickers from '@/utils/tickerSymbolData';
+import React from 'react';
 
 export default function Home() {
-  const [tickersLeft, setTickersLeft] = useState<tickerObjectType[]>([]);
-  const [tickersRight, setTickersRight] = useState<tickerObjectType[]>([]);
-
   // TOGGLE CARD CREATION START
   const chartTestStyle: React.CSSProperties = {
     width: '400px',
@@ -48,16 +44,8 @@ export default function Home() {
   const sectionBgColor = 'rgb(0,0,0)';
   const pageBgColor = darkGray;
   const borderWidth = '2px';
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const leftData = await GenerateTickerData(10);
-      const rightData = await GenerateTickerData(10);
-      setTickersLeft(leftData);
-      setTickersRight(rightData);
-    };
-    fetchData();
-  }, []);
+  const tickersLeft = SP500Tickers.slice(0, 10);
+  const tickersRight = SP500Tickers.slice(10, 20);
 
   // Usage:
   const exampleCharts: chartListType = {
@@ -66,6 +54,8 @@ export default function Home() {
     verticalSpacing: '30rem',
     templateColumns: 'repeat(auto-fit, minmax(26rem, 1fr))',
   };
+
+  // const icker = <TickerDisplay></TickerDisplay>
 
   const tickerBoard: tickerBoxType = {
     leftTicker: tickersLeft,
@@ -97,7 +87,7 @@ export default function Home() {
         backgroundColor={pageBgColor}
       >
         <GridItem pl="2" area="tickers" padding="0px">
-          <TickerBoard myTickers={tickerBoard} />
+          <TickerSection myTickers={tickerBoard} />
         </GridItem>
 
         <GridItem

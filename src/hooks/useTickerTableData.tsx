@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
-import { GetDate, GetYesterday } from '@/utils/getDate';
+import { GetLastTradingDayFromDate } from '@/utils/getDate';
 
 interface tickerDataType {
-    ticker: string,
-    price: string,
-    percentChange: string,
-    marketCap: string,
-    volume: string,
-    dividendYield: string
+  ticker: string,
+  price: string,
+  percentChange: string,
+  marketCap: string,
+  volume: string,
+  dividendYield: string
 }
 
 const INIT_DATA: tickerDataType = {
@@ -20,50 +20,65 @@ const INIT_DATA: tickerDataType = {
   dividendYield: '',
 };
 
-const toUSD = (num: number) => {
-  const mynum = num;
-  return mynum.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
-};
+const toUSD = (num: number) => num.toLocaleString('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
 
 export default function useTickerTableData(symbol: string) {
   const [tickerData, setTickerData] = useState<tickerDataType>(INIT_DATA);
   const [tickerLoading, setTickerLoading] = useState<boolean>(true);
+  const [dataUnavailable, setDataUnavailable] = useState<boolean>(false);
 
   useEffect(() => {
+    const tradingDay = GetLastTradingDayFromDate(new Date());
     const fetchData = async () => {
       try {
-        const today = GetDate();
-        console.log(today);
-        console.log(`/api/polygonTickerRef?symbol=${symbol}&date=${today}`);
-        const response = await fetch(`/api/polygonTickerRef?symbol=${symbol}&date=${today}`);
-        if (response.ok) {
-          const data = await response.json();
-          const { results } = data;
+        const [tickerRefResponse,
+          priceResponse,
+          openCloseResponse,
+          dividendResponse] = await Promise.all([
+          fetch(`/api/polygonTickerRef?symbol=${symbol}&date=${tradingDay}`),
+          fetch(`/api/polygonPreviousClose?symbol=${symbol}`),
+          fetch(`/api/polygonDailyOpenClose?symbol=${symbol}&date=${tradingDay}`),
+          fetch(`/api/polygonDividends?symbol=${symbol}`),
+        ]);
+
+        if (tickerRefResponse.ok
+            && priceResponse.ok
+            && openCloseResponse.ok
+            && dividendResponse.ok) {
+          const tickerRefData = await tickerRefResponse.json();
+          const priceData = await priceResponse.json();
+          const openCloseData = await openCloseResponse.json();
+          const dividendData = await dividendResponse.json();
+
+          if (symbol === 'ABMD') {
+            console.log('Ticker Ref Data:', tickerRefData);
+            console.log('Price Data:', priceData);
+            console.log('Open/Close Data:', openCloseData);
+            console.log('Dividend Data:', dividendData);
+          }
+
+          const { results } = tickerRefData;
           const marketCap = results.market_cap;
 
-          const priceResponse = await fetch(`/api/polygonPreviousClose?symbol=${symbol}`);
-          const priceData = await priceResponse.json();
           const priceResults = priceData.results[0];
           const price = priceResults.vw;
 
-          const yesterday = GetYesterday();
-          const openCloseResponse = await fetch(`/api/polygonDailyOpenClose?symbol=${symbol}&date=${yesterday}`);
-          const openCloseData = await openCloseResponse.json();
           const openPrice = openCloseData.open;
           const closePrice = openCloseData.close;
           const prevVolume = openCloseData.volume;
           const percentChange = ((openPrice - closePrice) / closePrice) * 100;
 
-          const dividendResponse = await fetch(`/api/polygonDividends?symbol=${symbol}`);
-          const dividendData = await dividendResponse.json();
-          const dividendResults = dividendData.results[0];
-          const cashAmount = dividendResults.cash_amount;
-          const yieldFrequency = dividendResults.frequency;
-          const dividendYield = ((cashAmount * yieldFrequency) / price) * 100;
-          console.log(dividendYield);
+          let dividendYield: number | string = '-------';
+          if (dividendData.results.length !== 0) {
+            const dividendResults = dividendData.results[0];
+            const cashAmount = dividendResults.cash_amount;
+            const yieldFrequency = dividendResults.frequency;
+            dividendYield = ((cashAmount * yieldFrequency) / price) * 100;
+            dividendYield = `${Number(dividendYield.toFixed(2))}%`;
+          }
 
           setTickerData({
             ticker: symbol,
@@ -71,18 +86,22 @@ export default function useTickerTableData(symbol: string) {
             price: toUSD(price),
             percentChange: `${Number(percentChange.toFixed(2))}%`,
             volume: `$${Number((prevVolume / 1000000).toFixed(2))}M`,
-            dividendYield: `${Number(dividendYield.toFixed(2))}%`,
+            dividendYield,
           });
         } else {
+          setDataUnavailable(true);
           console.error('Failed to fetch data');
         }
       } catch (error) {
+        setDataUnavailable(true);
         console.log(error);
+      } finally {
+        setTickerLoading(false);
       }
     };
 
-    fetchData().finally(() => setTickerLoading(false));
+    fetchData();
   }, [symbol]);
 
-  return { tickerData, tickerLoading };
+  return { tickerData, tickerLoading, dataUnavailable };
 }
