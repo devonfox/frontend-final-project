@@ -4,7 +4,6 @@ interface TickerChartData {
   date: string;
   price: number;
 }
-
 interface TickerChart {
   name: string;
 
@@ -47,56 +46,51 @@ const getLastNthDays = (days: number) => {
   return lastNthDays;
 };
 
-export default function useLineChartData(symbol: string) {
+function useLineChartData(symbol: string) {
   const [chartData, setChartData] = useState<TickerChart>(INIT_DATA);
   const [chartLoading, setChartLoading] = useState<boolean>(true);
 
-  const dates: string[] = getLastNthDays(DAY_RANGE);
+  const dates: string[] = getLastNthDays(DAY_RANGE).reverse();
 
   useEffect(() => {
     const fetchData = async () => {
-      const priceData: TickerChartData[] = [];
-      let name: string = '';
-
-      for (let i = DAY_RANGE - 1; i >= 0; i -= 1) {
-        try {
+      try {
+        const pricePromises = dates.map(async (date) => {
           const response = await fetch(
-            `/api/polygonClosePrice?symbol=${symbol}&date=${dates[i]}`,
+            `/api/polygonClosePrice?symbol=${symbol}&date=${date}`,
           );
           if (response.ok) {
             const data = await response.json();
             const price = data.close;
-            const date = dates[i];
-            priceData.push({ date, price });
-          } else {
-            console.error(`Failed to fetch price data for ${dates[i]}`);
-            return;
+            return { date, price };
           }
-        } catch (error) {
-          console.error(error);
-          return;
-        }
-      }
+          console.error(`Failed to fetch price data for ${date}`);
+          throw new Error('Failed to fetch price data');
+        });
 
-      try {
-        const response = await fetch(`/api/polygonDetail?symbol=${symbol}`);
-        if (response.ok) {
-          const data = await response.json();
-          name = data.results.name;
-        } else {
+        const nameResponse = await fetch(`/api/polygonDetail?symbol=${symbol}`);
+        if (!nameResponse.ok) {
           console.error(`Failed to fetch name data for ${symbol}`);
-          return;
+          throw new Error('Failed to fetch name data');
         }
+        const nameData = await nameResponse.json();
+        const { name } = nameData.results;
+
+        const priceData = await Promise.all(pricePromises);
+
+        setChartData({ name, priceData });
       } catch (error) {
         console.error(error);
-        return;
+      } finally {
+        setChartLoading(false);
       }
-
-      setChartData({ name, priceData });
     };
 
-    fetchData().finally(() => setChartLoading(false));
-  }, [symbol, dates]);
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [symbol]);
 
   return { chartData, chartLoading };
 }
+
+export default useLineChartData;

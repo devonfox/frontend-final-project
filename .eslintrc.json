@@ -4,7 +4,8 @@
     "airbnb"
     ],
     "rules": {
-      "no-console": ["error", { "allow": ["error"] }]
+      "no-console": ["error", { "allow": ["error"] }],
+      "linebreak-style": "off"
     },
     "overrides": [
       {
