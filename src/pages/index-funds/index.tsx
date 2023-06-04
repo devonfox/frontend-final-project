@@ -1,12 +1,12 @@
+import React from 'react';
 import GraphCard from '@/components/GraphCard/GraphCard';
 import {
   chartListType, tickerBoxType, toggleCardType,
 } from '@/types';
 import GraphGrid from '@/components/ContentGrid/ContentGrid';
 import { Grid, GridItem } from '@chakra-ui/react';
-import TickerSection from '@/components/TickerBoard/TickerSection';
 import SP500Tickers from '@/utils/tickerSymbolData';
-import React from 'react';
+import TickerSection from '@/components/TickerBoard/TickerSection';
 
 export default function Home() {
   // TOGGLE CARD CREATION START
@@ -54,8 +54,6 @@ export default function Home() {
     verticalSpacing: '30rem',
     templateColumns: 'repeat(auto-fit, minmax(26rem, 1fr))',
   };
-
-  // const icker = <TickerDisplay></TickerDisplay>
 
   const tickerBoard: tickerBoxType = {
     leftTicker: tickersLeft,
