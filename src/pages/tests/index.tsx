@@ -16,6 +16,9 @@ function Tests() {
       <li>
         <Link href="/tests/tickerdisplaytest">Ticker Display</Link>
       </li>
+      <li>
+        <Link href="/tests/tickertest">Ticker Data Test</Link>
+      </li>
     </ul>
   );
 }

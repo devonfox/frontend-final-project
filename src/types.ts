@@ -20,10 +20,10 @@ export type tickerType = {
 export type tickerDataType = {
     ticker: string,
     price: string,
-    percent_change: string,
-    market_cap: string,
+    percentChange: string,
+    marketCap: string,
     volume: string,
-    dividend_yield: string
+    dividendYield: string
 };
 
 export type tickerListType = {

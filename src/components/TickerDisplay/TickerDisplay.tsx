@@ -23,16 +23,16 @@ function TickerDisplay({ tickerData }: { tickerData: tickerObjectType[] }) {
           {element.data.price}
         </Td>
         <Td fontStyle="italic" fontWeight="semibold">
-          {element.data.percent_change}
+          {element.data.percentChange}
         </Td>
         <Td fontStyle="italic" fontWeight="semibold">
-          {element.data.market_cap}
+          {element.data.marketCap}
         </Td>
         <Td fontStyle="italic" fontWeight="semibold">
           {element.data.volume}
         </Td>
         <Td fontStyle="italic" fontWeight="semibold">
-          {element.data.dividend_yield}
+          {element.data.dividendYield}
         </Td>
       </Tr>,
     );
