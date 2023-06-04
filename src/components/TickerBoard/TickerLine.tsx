@@ -1,19 +1,15 @@
 import { Tr, Td } from '@chakra-ui/react';
 import React from 'react';
 import useTickerTableData from '@/hooks/useTickerTableData';
-import { tickerDataType } from '@/types';
 
 interface tickerFuncProps {
     symbol: string;
 }
 
 function TickerLine({ symbol }: tickerFuncProps) {
-  const ticker: { tickerData: tickerDataType,
-      tickerLoading: boolean
-      , dataUnavailable: boolean
-  } = useTickerTableData(symbol);
+  const { tickerData, tickerLoading, dataUnavailable } = useTickerTableData(symbol);
 
-  if (ticker.dataUnavailable) {
+  if (dataUnavailable) {
     return (
       <Tr key={symbol} fontStyle="italic" fontWeight="semibold">
         <Td fontStyle="italic" fontWeight="semibold" colSpan={6}>
@@ -22,26 +18,26 @@ function TickerLine({ symbol }: tickerFuncProps) {
       </Tr>
     );
   }
-  if (!ticker.tickerLoading && ticker.tickerData && ticker.tickerData.price) {
+  if (!tickerLoading && tickerData && tickerData.price) {
     return (
       <Tr key={symbol}>
         <Td fontStyle="italic" fontWeight="semibold">
-          {ticker.tickerData.ticker}
+          {tickerData.ticker}
         </Td>
         <Td fontStyle="italic" fontWeight="semibold">
-          {ticker.tickerData.price}
+          {tickerData.price}
         </Td>
         <Td fontStyle="italic" fontWeight="semibold">
-          {ticker.tickerData.percentChange}
+          {tickerData.percentChange}
         </Td>
         <Td fontStyle="italic" fontWeight="semibold">
-          {ticker.tickerData.marketCap}
+          {tickerData.marketCap}
         </Td>
         <Td fontStyle="italic" fontWeight="semibold">
-          {ticker.tickerData.volume}
+          {tickerData.volume}
         </Td>
         <Td fontStyle="italic" fontWeight="semibold">
-          {ticker.tickerData.dividendYield}
+          {tickerData.dividendYield}
         </Td>
       </Tr>
     );
