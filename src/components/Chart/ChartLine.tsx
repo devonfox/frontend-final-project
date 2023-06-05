@@ -15,7 +15,7 @@ import useLineChartData from '@/hooks/useLineChartData';
 
 interface ChartProps {
   symbol: string;
-  height?: number;
+  height?: number | string;
   width?: string | number;
 }
 
@@ -84,7 +84,7 @@ function ChartLine(props: ChartProps) {
 
   return !chartLoading ? (
     <div>
-      <Text fontWeight="bold" align="center" fontSize="1.2rem">
+      <Text fontWeight="bold" align="left" fontSize="1.2rem">
         {chartData?.name}
       </Text>
       <ResponsiveContainer width={width ?? '100%'} height={height ?? 300}>
