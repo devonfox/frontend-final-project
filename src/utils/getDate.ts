@@ -1,6 +1,10 @@
 const GetLastTradingDayFromDate = (yourDate: Date): string => {
   const date = new Date();
-  date.setDate(yourDate.getDate());
+  if (yourDate.getHours() < 17) {
+    date.setDate(yourDate.getDate() - 1);
+  } else {
+    date.setDate(yourDate.getDate());
+  }
   // https://www.nyse.com/markets/hours-calendars
   const NYSE_HOLIDAYS_2023 = ['2023-05-29', '2023-06-19', '2023-07-04', '2023-09-04', '2023-11-23', '2023-12-25'];
 
