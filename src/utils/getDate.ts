@@ -1,4 +1,4 @@
-const GetLastTradingDayFromDate = (yourDate: Date) => {
+const GetLastTradingDayFromDate = (yourDate: Date): string => {
   const date = new Date();
   date.setDate(yourDate.getDate());
   // https://www.nyse.com/markets/hours-calendars

@@ -78,7 +78,7 @@ export default function useTickerTableData(symbol: string) {
 
           if (Number.isNaN(marketCapCalc) || Number.isNaN(percentChangeCalc)) {
             setDataUnavailable(true);
-            console.error('Invalid Data Returned');
+            console.error(`Invalid Data Returned for ${symbol}`);
           } else {
             setTickerData({
               ticker: symbol,
