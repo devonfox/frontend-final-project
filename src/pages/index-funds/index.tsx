@@ -34,7 +34,7 @@ export default function Home() {
   const gridCards = () => {
     const stockCharts = [];
     for (let index = 0; index < 50; index += 1) {
-      stockCharts.push({ id: index, chart: <GraphCard myCharts={charts} /> });
+      stockCharts.push({ id: index, chart: <GraphCard symbol={'AAPL'} /> });
     }
     return stockCharts;
   };
