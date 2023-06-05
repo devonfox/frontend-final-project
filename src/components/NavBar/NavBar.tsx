@@ -32,9 +32,9 @@ function NavBar() {
           variant="ghost"
           fontSize="2rem"
           color="skyblue"
-          marginLeft={{ base: '0px', lg: '10px' }}
-          marginRight={{ base: '20px', lg: '10px' }}
-          marginTop={{ base: '0px', lg: '10px' }}
+          marginLeft={{ base: '0px', md: '10px', lg: '10px' }}
+          marginRight={{ base: '20px', md: '10px', lg: '10px' }}
+          marginTop={{ base: '0px', md: '10px', lg: '10px' }}
           _hover={hoverColor}
         />
         <MenuList bg={menuColor} borderColor="skyblue" padding="0px">

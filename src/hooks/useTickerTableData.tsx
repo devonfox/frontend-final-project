@@ -53,13 +53,6 @@ export default function useTickerTableData(symbol: string) {
           const openCloseData = await openCloseResponse.json();
           const dividendData = await dividendResponse.json();
 
-          if (symbol === 'ABMD') {
-            console.log('Ticker Ref Data:', tickerRefData);
-            console.log('Price Data:', priceData);
-            console.log('Open/Close Data:', openCloseData);
-            console.log('Dividend Data:', dividendData);
-          }
-
           const { results } = tickerRefData;
           const marketCap = results.market_cap;
 
