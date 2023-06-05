@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
-import { GetLastTradingDayFromDate } from '@/utils/getDate';
+import GetLastTradingDayFromDate from '@/utils/getDate';
 
 interface tickerDataType {
   ticker: string,
@@ -47,47 +47,48 @@ export default function useTickerTableData(symbol: string) {
         if (tickerRefResponse.ok
             && priceResponse.ok
             && openCloseResponse.ok
-            && dividendResponse.ok) {
+            && dividendResponse.ok
+        ) {
           const tickerRefData = await tickerRefResponse.json();
           const priceData = await priceResponse.json();
           const openCloseData = await openCloseResponse.json();
           const dividendData = await dividendResponse.json();
 
-          if (symbol === 'ABMD') {
-            console.log('Ticker Ref Data:', tickerRefData);
-            console.log('Price Data:', priceData);
-            console.log('Open/Close Data:', openCloseData);
-            console.log('Dividend Data:', dividendData);
-          }
-
           const { results } = tickerRefData;
-          const marketCap = results.market_cap;
+          const marketCap = results?.market_cap;
 
           const priceResults = priceData.results[0];
           const price = priceResults.vw;
 
-          const openPrice = openCloseData.open;
-          const closePrice = openCloseData.close;
-          const prevVolume = openCloseData.volume;
+          const openPrice = openCloseData?.open;
+          const closePrice = openCloseData?.close;
+          const prevVolume = openCloseData?.volume;
           const percentChange = ((openPrice - closePrice) / closePrice) * 100;
 
           let dividendYield: number | string = '-------';
           if (dividendData.results.length !== 0) {
-            const dividendResults = dividendData.results[0];
-            const cashAmount = dividendResults.cash_amount;
-            const yieldFrequency = dividendResults.frequency;
+            const dividendResults = dividendData?.results[0];
+            const cashAmount = dividendResults?.cash_amount;
+            const yieldFrequency = dividendResults?.frequency;
             dividendYield = ((cashAmount * yieldFrequency) / price) * 100;
             dividendYield = `${Number(dividendYield.toFixed(2))}%`;
           }
+          const marketCapCalc: number = Number(marketCap / 1000000000);
+          const percentChangeCalc: number = Number(percentChange);
 
-          setTickerData({
-            ticker: symbol,
-            marketCap: `$${Number((marketCap / 1000000000).toFixed(2))}B`,
-            price: toUSD(price),
-            percentChange: `${Number(percentChange.toFixed(2))}%`,
-            volume: `$${Number((prevVolume / 1000000).toFixed(2))}M`,
-            dividendYield,
-          });
+          if (Number.isNaN(marketCapCalc) || Number.isNaN(percentChangeCalc)) {
+            setDataUnavailable(true);
+            console.error(`Invalid Data Returned for ${symbol}`);
+          } else {
+            setTickerData({
+              ticker: symbol,
+              marketCap: `$${marketCapCalc.toFixed(2)}B`,
+              price: toUSD(price),
+              percentChange: `${percentChangeCalc.toFixed(2)}%`,
+              volume: `$${Number((prevVolume / 1000000).toFixed(2))}M`,
+              dividendYield,
+            });
+          }
         } else {
           setDataUnavailable(true);
           console.error('Failed to fetch data');
