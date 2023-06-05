@@ -5,7 +5,7 @@ interface TickerChartData {
   price: number;
 }
 interface TickerChart {
-  name: string;
+  name?: string;
 
   priceData: TickerChartData[];
 }
@@ -13,7 +13,6 @@ interface TickerChart {
 const DAY_RANGE: number = 5;
 
 const INIT_DATA: TickerChart = {
-  name: 'init',
   priceData: [],
 };
 
@@ -68,17 +67,9 @@ function useLineChartData(symbol: string) {
           throw new Error('Failed to fetch price data');
         });
 
-        const nameResponse = await fetch(`/api/polygonDetail?symbol=${symbol}`);
-        if (!nameResponse.ok) {
-          console.error(`Failed to fetch name data for ${symbol}`);
-          throw new Error('Failed to fetch name data');
-        }
-        const nameData = await nameResponse.json();
-        const { name } = nameData.results;
-
         const priceData = await Promise.all(pricePromises);
 
-        setChartData({ name, priceData });
+        setChartData({ priceData });
       } catch (error) {
         console.error(error);
       } finally {
