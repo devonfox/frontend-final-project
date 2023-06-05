@@ -15,19 +15,19 @@ function TickerTestFunc({ symbol }: tickerFuncProps) {
         {`Ticker: ${tickerData.ticker}`}
       </div>
       <div>
-          {`MarketCap: ${tickerData.marketCap}`}
+        {`MarketCap: ${tickerData.marketCap}`}
       </div>
       <div>
-          {`Price: ${tickerData.price}`}
+        {`Price: ${tickerData.price}`}
       </div>
       <div>
-          {`PercentChange: ${tickerData.percentChange}`}
+        {`PercentChange: ${tickerData.percentChange}`}
       </div>
       <div>
-          {`Volume: ${tickerData.volume}`}
+        {`Volume: ${tickerData.volume}`}
       </div>
       <div>
-          {`Dividend Yield: ${tickerData.dividendYield}`}
+        {`Dividend Yield: ${tickerData.dividendYield}`}
       </div>
     </div>
   ) : (
