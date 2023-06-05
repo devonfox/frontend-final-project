@@ -55,8 +55,6 @@ export default function Home() {
     templateColumns: 'repeat(auto-fit, minmax(26rem, 1fr))',
   };
 
-  // const icker = <TickerDisplay></TickerDisplay>
-
   const tickerBoard: tickerBoxType = {
     leftTicker: tickersLeft,
     rightTicker: tickersRight,

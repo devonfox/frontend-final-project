@@ -20,10 +20,9 @@ function NavBar() {
       bg="rgb(0,0,0)"
       display="flex"
       justifyContent="flex-end"
-      paddingX={{ base: '10px', md: '20px' }}
-      paddingY={{ base: '0px', md: '5px' }}
-      width={{ base: '100%', md: '60px' }}
-      height={{ base: '60px', md: '100%' }}
+      width="100%"
+      height="100%"
+
     >
       <Menu>
         <MenuButton
@@ -33,7 +32,9 @@ function NavBar() {
           variant="ghost"
           fontSize="2rem"
           color="skyblue"
-          marginRight={{ base: '0px', lg: '20px' }}
+          marginLeft={{ base: '0px', lg: '10px' }}
+          marginRight={{ base: '20px', lg: '10px' }}
+          marginTop={{ base: '0px', lg: '10px' }}
           _hover={hoverColor}
         />
         <MenuList bg={menuColor} borderColor="skyblue" padding="0px">
