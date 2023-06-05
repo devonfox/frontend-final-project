@@ -10,7 +10,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { Text, Spinner, Center } from '@chakra-ui/react';
+import { Text, Spinner, Center, Box } from '@chakra-ui/react';
 import useLineChartData from '@/hooks/useLineChartData';
 
 interface ChartProps {
@@ -19,41 +19,12 @@ interface ChartProps {
   width?: string | number;
 }
 
-function formatDate(dateStr: string): string {
-  const monthNames: string[] = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-
-  const suffixes: { [key: number]: string } = {
-    1: 'st',
-    2: 'nd',
-    3: 'rd',
-    21: 'st',
-    22: 'nd',
-    23: 'rd',
-    31: 'st',
-  };
-
-  const date: Date = new Date(dateStr);
-
-  const monthIndex: number = date.getUTCMonth();
-  const monthName: string = monthNames[monthIndex];
-
-  const day: number = date.getUTCDate();
-  const daySuffix: string = suffixes[day] || 'th';
-
-  return `${monthName} ${day}${daySuffix}`;
+function formatDate(date: string): string {
+  // eslint-disable-next-line no-unused-vars
+  const [year, month, day] = date.split('-');
+  const formattedMonth = String(Number(month)); // Remove leading zeros from month
+  const formattedDay = String(Number(day)); // Remove leading zeros from day
+  return `${formattedMonth}/${formattedDay}`;
 }
 
 function CustomTooltip({
@@ -83,15 +54,12 @@ function ChartLine(props: ChartProps) {
   const maxPrice = Math.max(...chartData.priceData.map((data) => data.price));
 
   return !chartLoading ? (
-    <div>
-      <Text fontWeight="bold" align="left" fontSize="1.2rem">
-        {chartData?.name}
-      </Text>
+    <Box height={400} width={400}>
       <ResponsiveContainer width={width ?? '100%'} height={height ?? 300}>
         <LineChart
           data={chartData.priceData}
           margin={{
-            top: 10, right: 30, left: 20, bottom: 10,
+            top: 30, right: 10, left: 20, bottom: 10,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
@@ -112,13 +80,13 @@ function ChartLine(props: ChartProps) {
           <Line
             type="monotone"
             dataKey="price"
-            stroke="#8884d8"
+            stroke="#76E4F7"
             strokeWidth={4}
             activeDot={{ r: 8 }}
           />
         </LineChart>
       </ResponsiveContainer>
-    </div>
+    </Box>
   ) : (
     <Center height={height ?? 300} width="100%">
       <Spinner size="lg" />
