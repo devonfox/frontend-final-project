@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
-import { GetLastTradingDayFromDate } from '@/utils/getDate';
+import GetLastTradingDayFromDate from '@/utils/getDate';
 
 interface tickerDataType {
   ticker: string,
