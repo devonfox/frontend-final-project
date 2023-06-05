@@ -10,10 +10,11 @@ import {
   YAxis,
 } from 'recharts';
 import {
-  Spinner, Center, Box,
+  Spinner, Center, Box, Text,
 } from '@chakra-ui/react';
 
 import useLineChartData, { LineChartData } from '@/hooks/useLineChartData';
+
 
 interface ChartProps {
   symbol: string;
@@ -36,13 +37,22 @@ function CustomTooltip({
 }: TooltipProps<any, number>) {
   if (active && payload && payload.length) {
     return (
-      <div className="custom-tooltip">
-        <p className="label">
+      <Box
+        bg="black"
+        border="1px solid"
+        borderColor="cyan.300"
+        p={3}
+        borderRadius="md"
+        fontFamily="Arial, sans-serif"
+        fontSize="12px"
+        color="white"
+      >
+        <Text fontSize="2xl" mb={-1}>
           {`${formatDate(
             label,
-          )} : $${payload[0].value.toFixed(2)}`}
-        </p>
-      </div>
+          )}: $${payload[0].value.toFixed(2)}`}
+        </Text>
+      </Box>
     );
   }
   return null;
