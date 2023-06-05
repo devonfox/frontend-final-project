@@ -57,31 +57,32 @@ function ChartPie(props: PieChartProps) {
   const { chartData, chartLoading } = usePieChartData(symbol);
 
   return !chartLoading ? (
-    <ResponsiveContainer width={width ?? '100%'} height={height}>
-      <PieChart
-        margin={{
-          top: 10, right: 30, left: 20, bottom: 10,
-        }}
-      >
-        <Pie
-          data={chartData.pieChartData}
-          dataKey="value"
-          fill="#8884d8"
-
+    <Box height={height ?? 400} width={width ?? '100%'}>
+      <ResponsiveContainer>
+        <PieChart
+          margin={{
+            top: 10, right: 30, left: 20, bottom: 10,
+          }}
         >
-          {chartData.pieChartData.map((entry) => (
-            <Cell key={`${entry.name}`} fill={entry.color} />
-          ))}
-        </Pie>
-        <Tooltip content={<CustomTooltip />} />
-        <Legend
-          align="right"
-          verticalAlign="middle"
-          layout="vertical"
-          iconType="circle"
-        />
-      </PieChart>
-    </ResponsiveContainer>
+          <Pie
+            data={chartData.pieChartData}
+            dataKey="value"
+            fill="#8884d8"
+          >
+            {chartData.pieChartData.map((entry) => (
+              <Cell key={`${entry.name}`} fill={entry.color} />
+            ))}
+          </Pie>
+          <Tooltip content={<CustomTooltip />} />
+          <Legend
+            align="right"
+            verticalAlign="middle"
+            layout="vertical"
+            iconType="circle"
+          />
+        </PieChart>
+      </ResponsiveContainer>
+    </Box>
   ) : (
     <Center height={height ?? 400} width={width}>
       <Spinner size="lg" />

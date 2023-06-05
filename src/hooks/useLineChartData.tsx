@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
 
-interface TickerChartData {
+interface LineChartDataElement {
   date: string;
   price: number;
 }
-interface TickerChart {
+export interface LineChartData {
   name?: string;
 
-  priceData: TickerChartData[];
+  priceData: LineChartDataElement[];
 }
 
 const DAY_RANGE: number = 5;
 
-const INIT_DATA: TickerChart = {
+const INIT_DATA: LineChartData = {
+  name: '',
   priceData: [],
 };
 
@@ -46,7 +47,7 @@ const getLastNthDays = (days: number) => {
 };
 
 function useLineChartData(symbol: string) {
-  const [chartData, setChartData] = useState<TickerChart>(INIT_DATA);
+  const [chartData, setChartData] = useState<LineChartData>(INIT_DATA);
   const [chartLoading, setChartLoading] = useState<boolean>(true);
 
   const dates: string[] = getLastNthDays(DAY_RANGE).reverse();
@@ -72,12 +73,11 @@ function useLineChartData(symbol: string) {
         setChartData({ priceData });
       } catch (error) {
         console.error(error);
-      } finally {
-        setChartLoading(false);
       }
     };
 
-    fetchData();
+    fetchData().catch((e) => { console.error(e); })
+      .finally(() => { setChartLoading(false); });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [symbol]);
 
