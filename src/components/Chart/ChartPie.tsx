@@ -14,11 +14,11 @@ interface PieChartProps {
 }
 
 function CustomTooltip({ active, payload }: any) {
-  let color = '';
+  let color: string = '';
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     color = data.color;
-    let formattedAmount = '';
+    let formattedAmount: string = '';
 
     if (data.value >= 1000000000) {
       formattedAmount = `$${(data.value / 1000000000).toFixed(0)} billion`;
@@ -42,8 +42,8 @@ function CustomTooltip({ active, payload }: any) {
         fontSize="12px"
         color="white"
       >
-        <Text color={color} fontWeight="bold" fontSize="xl">{data.name}</Text>
-        <Text fontSize="xl">
+        <Text color={color} fontWeight="bold" fontSize="xl" mb={-1}>{data.name}</Text>
+        <Text fontSize="xl" mb={1}>
           {formattedAmount}
         </Text>
       </Box>
