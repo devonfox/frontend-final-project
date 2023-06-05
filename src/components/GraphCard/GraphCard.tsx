@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { PieChart, ShowChart } from '@mui/icons-material';
-import { toggleCardType } from '@/types';
 import { Box, ScaleFade } from '@chakra-ui/react';
 
-function GraphCard({ myCharts }: { myCharts: toggleCardType }) {
-  const [cardSwap, setCardSwap] = useState(false);
+import ChartContainer from '@/components/Chart/ChartContainer';
+
+interface GraphCardProps {
+  symbol: string;
+}
+
+function GraphCard(props: GraphCardProps) {
+  const { symbol } = props;
+  const [cardSwap, setCardSwap] = useState(true);
 
   const handleClick = () => {
     setCardSwap(!cardSwap);
   };
 
-  const { lineChart } = myCharts;
-  const { pieChart } = myCharts;
   const iconWidthHeight = '40px';
   const iconDisplay = 'flex';
   const iconAlignItems = 'center';
@@ -55,21 +59,17 @@ function GraphCard({ myCharts }: { myCharts: toggleCardType }) {
       w="fit-content"
       h="fit-content"
     >
-      <ScaleFade in={cardSwap} initialScale={0.9}>
-        {cardSwap && pieChart}
+      <ScaleFade in={cardSwap || !cardSwap} initialScale={0.9}>
+        <ChartContainer symbol={symbol} switchCard={cardSwap} />
       </ScaleFade>
-      <ScaleFade in={!cardSwap} initialScale={0.9}>
-        {!cardSwap && lineChart}
-      </ScaleFade>
+
       <Box
         position="absolute"
-        top="10px"
+        top="-8px"
         right="10px"
         display="flex"
-        alignItems="center"
       >
-        {cardSwap && lineIcon}
-        {!cardSwap && pieIcon}
+        {cardSwap ? lineIcon : pieIcon}
       </Box>
     </Box>
   );

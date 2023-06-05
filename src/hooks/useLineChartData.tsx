@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
 
-interface TickerChartData {
+interface LineChartDataElement {
   date: string;
   price: number;
 }
-interface TickerChart {
-  name: string;
+export interface LineChartData {
+  name?: string;
 
-  priceData: TickerChartData[];
+  priceData: LineChartDataElement[];
 }
 
 const DAY_RANGE: number = 5;
 
-const INIT_DATA: TickerChart = {
-  name: 'init',
+const INIT_DATA: LineChartData = {
+  name: '',
   priceData: [],
 };
 
@@ -47,7 +47,7 @@ const getLastNthDays = (days: number) => {
 };
 
 function useLineChartData(symbol: string) {
-  const [chartData, setChartData] = useState<TickerChart>(INIT_DATA);
+  const [chartData, setChartData] = useState<LineChartData>(INIT_DATA);
   const [chartLoading, setChartLoading] = useState<boolean>(true);
 
   const dates: string[] = getLastNthDays(DAY_RANGE).reverse();
@@ -68,25 +68,16 @@ function useLineChartData(symbol: string) {
           throw new Error('Failed to fetch price data');
         });
 
-        const nameResponse = await fetch(`/api/polygonDetail?symbol=${symbol}`);
-        if (!nameResponse.ok) {
-          console.error(`Failed to fetch name data for ${symbol}`);
-          throw new Error('Failed to fetch name data');
-        }
-        const nameData = await nameResponse.json();
-        const { name } = nameData.results;
-
         const priceData = await Promise.all(pricePromises);
 
-        setChartData({ name, priceData });
+        setChartData({ priceData });
       } catch (error) {
         console.error(error);
-      } finally {
-        setChartLoading(false);
       }
     };
 
-    fetchData();
+    fetchData().catch((e) => { console.error(e); })
+      .finally(() => { setChartLoading(false); });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [symbol]);
 

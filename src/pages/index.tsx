@@ -1,6 +1,6 @@
 import GraphCard from '@/components/GraphCard/GraphCard';
 import {
-  chartListType, tickerBoxType, toggleCardType,
+  chartListType, tickerBoxType,
 } from '@/types';
 import GraphGrid from '@/components/ContentGrid/ContentGrid';
 import { Grid, GridItem } from '@chakra-ui/react';
@@ -10,31 +10,11 @@ import React from 'react';
 
 export default function Home() {
   // TOGGLE CARD CREATION START
-  const chartTestStyle: React.CSSProperties = {
-    width: '400px',
-    height: '400px',
-    backgroundColor: 'grey',
-    padding: '0px',
-    margin: '0px',
-  };
-
-  const chartTestStyle2: React.CSSProperties = {
-    width: '400px',
-    height: '400px',
-    backgroundColor: 'black',
-    padding: '0px',
-    margin: '0px',
-  };
-
-  const charts: toggleCardType = {
-    lineChart: <div style={chartTestStyle} />,
-    pieChart: <div style={chartTestStyle2} />,
-  };
-
   const gridCards = () => {
+    const tickers = SP500Tickers.slice(0, 50);
     const stockCharts = [];
     for (let index = 0; index < 50; index += 1) {
-      stockCharts.push({ id: index, chart: <GraphCard myCharts={charts} /> });
+      stockCharts.push({ id: index, chart: <GraphCard symbol={tickers[index]} /> });
     }
     return stockCharts;
   };
