@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Box
         height="100%"
         display="flex"
-        flexDirection={{ base: 'column', lg: 'row' }}
+        flexDirection={{ base: 'column', md: 'row', lg: 'row' }}
       >
         <Box>
           <NavBar />
