@@ -44,15 +44,9 @@ function NavBar() {
             </MenuItem>
           </Link>
 
-          <Link href="/index-funds" style={{ textDecoration: 'none' }}>
+          <Link href="/profile" style={{ textDecoration: 'none' }}>
             <MenuItem bg="inherit" _hover={hoverColor} color={textColor}>
-              Index Funds
-            </MenuItem>
-          </Link>
-
-          <Link href="/tests/" style={{ textDecoration: 'none' }}>
-            <MenuItem bg="inherit" _hover={hoverColor} color={textColor}>
-              Dev Tests
+              Stock Profiles
             </MenuItem>
           </Link>
         </MenuList>
