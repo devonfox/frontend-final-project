@@ -1,5 +1,4 @@
 import React from 'react';
-import { tickerObjectType } from '@/types';
 
 import {
   Table,
@@ -7,36 +6,19 @@ import {
   Tbody,
   Tr,
   Th,
-  Td,
+  // Td,
   TableContainer,
 } from '@chakra-ui/react';
+import TickerLine from './TickerLine';
 
-function TickerDisplay({ tickerData }: { tickerData: tickerObjectType[] }) {
-  const tickers: any = [];
-  tickerData.forEach((element) => {
-    tickers.push(
-      <Tr key={element.id}>
-        <Td fontStyle="italic" fontWeight="semibold">
-          {element.data.ticker}
-        </Td>
-        <Td fontStyle="italic" fontWeight="semibold">
-          {element.data.price}
-        </Td>
-        <Td fontStyle="italic" fontWeight="semibold">
-          {element.data.percent_change}
-        </Td>
-        <Td fontStyle="italic" fontWeight="semibold">
-          {element.data.market_cap}
-        </Td>
-        <Td fontStyle="italic" fontWeight="semibold">
-          {element.data.volume}
-        </Td>
-        <Td fontStyle="italic" fontWeight="semibold">
-          {element.data.dividend_yield}
-        </Td>
-      </Tr>,
-    );
-  });
+interface tickerTableProps {
+  symbols: string[];
+}
+
+function TickerTable({ symbols }: tickerTableProps) {
+  const tickers = [...symbols]
+    .map((ticker: string) => <TickerLine symbol={ticker} />)
+    .filter((component) => component !== null);
 
   return (
     <TableContainer bg="none" color="skyblue">
@@ -92,4 +74,4 @@ function TickerDisplay({ tickerData }: { tickerData: tickerObjectType[] }) {
     </TableContainer>
   );
 }
-export default TickerDisplay;
+export default TickerTable;

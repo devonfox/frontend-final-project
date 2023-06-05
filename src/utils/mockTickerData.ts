@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 import { faker } from '@faker-js/faker';
 import shuffle from 'just-shuffle';
 import { tickerObjectType } from '@/types';
 import sp500Tickers from './tickerSymbolData';
 
-const GenerateTickerData = (num: number) => {
+const GenerateTickerData = (num: number): tickerObjectType[] => {
   const testData: tickerObjectType[] = [];
   let stockData = sp500Tickers;
   stockData = shuffle(stockData, { shuffleAll: true });
@@ -11,14 +12,12 @@ const GenerateTickerData = (num: number) => {
     const tickerline = {
       ticker: stockData[index],
       price: `$${faker.finance.amount()}`,
-      percent_change: faker.finance.amount(),
-      market_cap: faker.finance.amount(),
+      percentChange: faker.finance.amount(),
+      marketCap: faker.finance.amount(),
       volume: faker.finance.amount(),
-      dividend_yield: faker.finance.amount(),
+      dividendYield: faker.finance.amount(),
     };
-    testData.push(
-      { id: index, data: tickerline },
-    );
+    testData.push({ id: index, data: tickerline });
   }
   return testData;
 };

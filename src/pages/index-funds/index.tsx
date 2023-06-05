@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import GraphCard from '@/components/GraphCard/GraphCard';
 import {
   chartListType, tickerBoxType, toggleCardType,
-  tickerObjectType,
 } from '@/types';
 import GraphGrid from '@/components/ContentGrid/ContentGrid';
 import { Grid, GridItem } from '@chakra-ui/react';
-import TickerBoard from '@/components/TickerBoard/TickerBoard';
-import GenerateTickerData from '@/utils/mockTickerData';
+import SP500Tickers from '@/utils/tickerSymbolData';
+import TickerSection from '@/components/TickerBoard/TickerSection';
 
 export default function Home() {
-  const [tickersLeft, setTickersLeft] = useState<tickerObjectType[]>([]);
-  const [tickersRight, setTickersRight] = useState<tickerObjectType[]>([]);
-
   // TOGGLE CARD CREATION START
   const chartTestStyle: React.CSSProperties = {
     width: '400px',
@@ -44,21 +40,12 @@ export default function Home() {
   };
   // TOGGLE CARD CREATION END
 
-  const lightGray = 'rgb(221,221,221)';
-  const darkGray = 'rgb(68,68,68)';
-  const sectionBgColor = lightGray;
+  const darkGray = 'rgb(20,20,25)';
+  const sectionBgColor = 'rgb(0,0,0)';
   const pageBgColor = darkGray;
   const borderWidth = '2px';
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const leftData = await GenerateTickerData(50);
-      const rightData = await GenerateTickerData(25);
-      setTickersLeft(leftData);
-      setTickersRight(rightData);
-    };
-    fetchData();
-  }, []);
+  const tickersLeft = SP500Tickers.slice(0, 16);
+  const tickersRight = SP500Tickers.slice(17, 24);
 
   // Usage:
   const exampleCharts: chartListType = {
@@ -71,14 +58,14 @@ export default function Home() {
   const tickerBoard: tickerBoxType = {
     leftTicker: tickersLeft,
     rightTicker: tickersRight,
-    leftPercent: '60%',
-    rightPercent: '40%',
+    leftPercent: '50%',
+    rightPercent: '50%',
     bg: sectionBgColor,
     borderWidth,
     borderRadius: '10px',
     borderColor: 'black',
     paddingY: '15px',
-    paddingX: '0px',
+    paddingX: '15px',
   };
 
   return (
@@ -98,7 +85,7 @@ export default function Home() {
         backgroundColor={pageBgColor}
       >
         <GridItem pl="2" area="tickers" padding="0px">
-          <TickerBoard myTickers={tickerBoard} />
+          <TickerSection myTickers={tickerBoard} />
         </GridItem>
 
         <GridItem

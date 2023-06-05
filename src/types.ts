@@ -20,10 +20,10 @@ export type tickerType = {
 export type tickerDataType = {
     ticker: string,
     price: string,
-    percent_change: string,
-    market_cap: string,
+    percentChange: string,
+    marketCap: string,
     volume: string,
-    dividend_yield: string
+    dividendYield: string
 };
 
 export type tickerListType = {
@@ -41,8 +41,8 @@ export type toggleCardType = {
 }
 
 export type tickerBoxType = {
-    leftTicker: any;
-    rightTicker: any;
+    leftTicker: string[];
+    rightTicker: string[];
     leftPercent: string;
     rightPercent: string;
     bg: string;
