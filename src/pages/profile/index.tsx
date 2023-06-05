@@ -43,11 +43,11 @@ export default function Home() {
             <Heading as="h2" mb={10}>
               {`${symbol} Profile`}
             </Heading>
-            <Center ml={{ base: -10, md: -20 }}>
+            <Center ml={{ base: -5, md: -10 }}>
               <ChartLine symbol={symbol} height={400} width="90%" />
             </Center>
             <Flex flexWrap={{ base: 'wrap', md: 'nowrap' }}>
-              <Box mx={10} width={{ base: '100%', md: '50%' }}><ChartPie symbol={symbol} /></Box>
+              <Box mx={10} width={{ base: '100%', md: '50%' }}><ChartPie symbol={symbol} width={'100%'} /></Box>
               <Box mx={10} my={20} width={{ base: '100%', md: '50%' }}>
                 <Text>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
