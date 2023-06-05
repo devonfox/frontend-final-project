@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Card, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import ChartLine from '@/components/Chart/ChartLine';
 import ChartPie from '@/components/Chart/ChartPie';
 

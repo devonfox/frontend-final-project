@@ -1,6 +1,6 @@
 import GraphCard from '@/components/GraphCard/GraphCard';
 import {
-  chartListType, tickerBoxType, toggleCardType,
+  chartListType, tickerBoxType,
 } from '@/types';
 import GraphGrid from '@/components/ContentGrid/ContentGrid';
 import { Grid, GridItem } from '@chakra-ui/react';

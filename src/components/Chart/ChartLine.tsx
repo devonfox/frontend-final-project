@@ -10,7 +10,10 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { Text, Spinner, Center, Box } from '@chakra-ui/react';
+import {
+  Spinner, Center, Box,
+} from '@chakra-ui/react';
+
 import useLineChartData from '@/hooks/useLineChartData';
 
 interface ChartProps {
