@@ -1,4 +1,4 @@
-export const GetLastTradingDayFromDate = (yourDate: Date) => {
+const GetLastTradingDayFromDate = (yourDate: Date) => {
   const date = new Date();
   date.setDate(yourDate.getDate());
   // https://www.nyse.com/markets/hours-calendars
@@ -13,3 +13,4 @@ export const GetLastTradingDayFromDate = (yourDate: Date) => {
   myNewDate.setDate(date.getDate());
   return date.toISOString().split('T')[0];
 };
+export default GetLastTradingDayFromDate;
