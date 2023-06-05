@@ -17,7 +17,7 @@ interface tickerTableProps {
 
 function TickerTable({ symbols }: tickerTableProps) {
   const tickers = [...symbols]
-    .map((ticker: string) => <TickerLine symbol={ticker} />)
+    .map((ticker: string) => <TickerLine key={ticker} symbol={ticker} />)
     .filter((component) => component !== null);
 
   return (

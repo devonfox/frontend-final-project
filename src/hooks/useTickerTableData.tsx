@@ -54,21 +54,21 @@ export default function useTickerTableData(symbol: string) {
           const dividendData = await dividendResponse.json();
 
           const { results } = tickerRefData;
-          const marketCap = results.market_cap;
+          const marketCap = results?.market_cap;
 
           const priceResults = priceData.results[0];
-          const price = priceResults.vw;
+          const price = priceResults?.vw;
 
-          const openPrice = openCloseData.open;
-          const closePrice = openCloseData.close;
-          const prevVolume = openCloseData.volume;
+          const openPrice = openCloseData?.open;
+          const closePrice = openCloseData?.close;
+          const prevVolume = openCloseData?.volume;
           const percentChange = ((openPrice - closePrice) / closePrice) * 100;
 
           let dividendYield: number | string = '-------';
           if (dividendData.results.length !== 0) {
-            const dividendResults = dividendData.results[0];
-            const cashAmount = dividendResults.cash_amount;
-            const yieldFrequency = dividendResults.frequency;
+            const dividendResults = dividendData?.results[0];
+            const cashAmount = dividendResults?.cash_amount;
+            const yieldFrequency = dividendResults?.frequency;
             dividendYield = ((cashAmount * yieldFrequency) / price) * 100;
             dividendYield = `${Number(dividendYield.toFixed(2))}%`;
           }
