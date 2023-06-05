@@ -31,7 +31,7 @@ const INIT_DATA: PieChartData = {
 
 const colors = [
   '#ff7f0e', // orange
-  '#9467bd', // purple
+  '#b574fe', // purple
   '#17becf', // cyan
 ];
 
