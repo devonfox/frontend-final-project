@@ -47,7 +47,8 @@ export default function useTickerTableData(symbol: string) {
         if (tickerRefResponse.ok
             && priceResponse.ok
             && openCloseResponse.ok
-            && dividendResponse.ok) {
+            && dividendResponse.ok
+        ) {
           const tickerRefData = await tickerRefResponse.json();
           const priceData = await priceResponse.json();
           const openCloseData = await openCloseResponse.json();
@@ -57,7 +58,7 @@ export default function useTickerTableData(symbol: string) {
           const marketCap = results?.market_cap;
 
           const priceResults = priceData.results[0];
-          const price = priceResults?.vw;
+          const price = priceResults.vw;
 
           const openPrice = openCloseData?.open;
           const closePrice = openCloseData?.close;
@@ -72,15 +73,22 @@ export default function useTickerTableData(symbol: string) {
             dividendYield = ((cashAmount * yieldFrequency) / price) * 100;
             dividendYield = `${Number(dividendYield.toFixed(2))}%`;
           }
+          const marketCapCalc: number = Number(marketCap / 1000000000);
+          const percentChangeCalc: number = Number(percentChange);
 
-          setTickerData({
-            ticker: symbol,
-            marketCap: `$${Number((marketCap / 1000000000).toFixed(2))}B`,
-            price: toUSD(price),
-            percentChange: `${Number(percentChange.toFixed(2))}%`,
-            volume: `$${Number((prevVolume / 1000000).toFixed(2))}M`,
-            dividendYield,
-          });
+          if (Number.isNaN(marketCapCalc) || Number.isNaN(percentChangeCalc)) {
+            setDataUnavailable(true);
+            console.error('Invalid Data Returned');
+          } else {
+            setTickerData({
+              ticker: symbol,
+              marketCap: `$${marketCapCalc.toFixed(2)}B`,
+              price: toUSD(price),
+              percentChange: `${percentChangeCalc.toFixed(2)}%`,
+              volume: `$${Number((prevVolume / 1000000).toFixed(2))}M`,
+              dividendYield,
+            });
+          }
         } else {
           setDataUnavailable(true);
           console.error('Failed to fetch data');

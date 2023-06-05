@@ -16,9 +16,9 @@ interface tickerTableProps {
 }
 
 function TickerTable({ symbols }: tickerTableProps) {
-  const tickers = [...symbols]
-    .map((ticker: string) => <TickerLine key={ticker} symbol={ticker} />)
-    .filter((component) => component !== null);
+  // const tickers = [...symbols]
+  //   .map((ticker: string) => <TickerLine key={ticker} symbol={ticker} />)
+  //   .filter((component) => component !== null);
 
   return (
     <TableContainer bg="none" color="skyblue">
@@ -69,7 +69,11 @@ function TickerTable({ symbols }: tickerTableProps) {
             </Th>
           </Tr>
         </Thead>
-        <Tbody>{tickers}</Tbody>
+        <Tbody>
+          {[...symbols]
+            .map((ticker: string) => <TickerLine key={ticker} symbol={ticker} />)
+            .filter((component) => component !== null)}
+        </Tbody>
       </Table>
     </TableContainer>
   );
