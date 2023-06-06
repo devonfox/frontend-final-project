@@ -4,7 +4,7 @@ import {
   Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip,
 } from 'recharts';
 import {
-  Center, Spinner, Box, Text,
+  Center, Spinner, Box, Text, VStack,
 } from '@chakra-ui/react';
 
 interface PieChartProps {
@@ -60,25 +60,32 @@ function ChartPie(props: PieChartProps) {
   const { chartData, chartLoading } = usePieChartData(symbol);
 
   const profilePie = !chartLoading && isProfile ? (
-    <Box height={height ?? 400} width={width ?? '100%'}>
-      <ResponsiveContainer>
-        <PieChart
-          margin={{
-            top: 10, right: 30, left: 20, bottom: 10,
-          }}
-        >
-          <Pie
-            data={chartData.pieChartData}
-            dataKey="value"
-            fill="#8884d8"
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100%"
+    >
+      <VStack spacing={2} alignItems="flex-start">
+        <ResponsiveContainer>
+          <PieChart
+            margin={{
+              top: 10, right: 30, left: 30, bottom: 10,
+            }}
           >
-            {chartData.pieChartData.map((entry) => (
-              <Cell key={`${entry.name}`} fill={entry.color} />
-            ))}
-          </Pie>
-          <Tooltip content={<CustomTooltip />} />
-        </PieChart>
-      </ResponsiveContainer>
+            <Pie
+              data={chartData.pieChartData}
+              dataKey="value"
+              fill="#8884d8"
+            >
+              {chartData.pieChartData.map((entry) => (
+                <Cell key={`${entry.name}`} fill={entry.color} />
+              ))}
+            </Pie>
+            <Tooltip content={<CustomTooltip />} />
+          </PieChart>
+        </ResponsiveContainer>
+      </VStack>
     </Box>
   ) : (
     <Center height={height ?? 400} width={width}>

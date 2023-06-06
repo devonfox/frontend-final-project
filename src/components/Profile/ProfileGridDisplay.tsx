@@ -9,7 +9,6 @@ import {
   Card,
   CardBody,
   Td,
-  TableCaption,
   Tbody,
   Tr,
   TableContainer, Table, Link, VStack,
@@ -40,7 +39,7 @@ function ProfileGridDisplay(props: ProfileGridDisplayProps) {
   }
 
   return !loading ? (
-    <Box>
+    <Box minHeight="100vh">
       <Heading as="h2" my={10}>
         {profileData.name}
       </Heading>
@@ -51,7 +50,8 @@ function ProfileGridDisplay(props: ProfileGridDisplayProps) {
         <GridItem colSpan={1}>
           <Card height="100%" width="100%" bgColor="black" borderRadius="lg">
             <CardBody>
-              <ChartPie symbol={symbol} width="100%" isProfile />
+              <Flex></Flex>
+              <ChartPie symbol={symbol} isProfile />
             </CardBody>
           </Card>
         </GridItem>
@@ -73,25 +73,25 @@ function ProfileGridDisplay(props: ProfileGridDisplayProps) {
       >
         <GridItem colSpan={2}>
           <Card height="100%" width="100%" bgColor="black" borderRadius="lg">
-            <CardBody>
+            <CardBody m={5}>
               <ChartLine symbol={symbol} height={400} />
             </CardBody>
           </Card>
         </GridItem>
       </Grid>
-      <Heading as="h2" my={10}>
-        Info
-      </Heading>
+
       <Grid
         templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
-        gap={5}
+        gap={{base: 20, sm: 5}}
       >
         <GridItem colSpan={1} mt={{ base: 10, md: 0 }}>
+          <Heading as="h2" my={10}>
+            Info
+          </Heading>
           <Card height="100%" width="100%" bgColor="black" borderRadius="lg">
             <CardBody>
               <TableContainer>
-                <Table variant="unstyled" color="white" mt={5}>
-                  <TableCaption>Symbol Information</TableCaption>
+                <Table variant="unstyled" color="white">
                   <Tbody>
                     <Tr>
                       <Td fontStyle="bold">Total Employees</Td>
@@ -116,6 +116,9 @@ function ProfileGridDisplay(props: ProfileGridDisplayProps) {
           </Card>
         </GridItem>
         <GridItem colSpan={1} mt={{ base: 10, md: 0 }}>
+          <Heading as="h2" my={10}>
+            Address
+          </Heading>
           <Card height="100%" width="100%" bgColor="black" borderRadius="lg">
             <CardBody>
               <Box
@@ -125,18 +128,19 @@ function ProfileGridDisplay(props: ProfileGridDisplayProps) {
                 height="100%" // Adjust the height as needed
               >
                 <VStack spacing={2} alignItems="flex-start">
-                  <Text color="white" fontSize="2xl">
-                    {profileData.address.street}
-                  </Text>
-                  <Text color="white" fontSize="2xl">
+                  <Box color="white" fontSize="2xl">
+                    <Box>
+                      {`${profileData.address.street}`}
+                    </Box>
                     {`${profileData.address.city}, ${profileData.address.state} ${profileData.address.code}`}
-                  </Text>
+                  </Box>
                 </VStack>
               </Box>
 
             </CardBody>
           </Card>
         </GridItem>
+        <GridItem my={20} />
       </Grid>
 
     </Box>
