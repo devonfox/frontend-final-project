@@ -40,7 +40,7 @@ function NavBar() {
         <MenuList bg={menuColor} borderColor="skyblue" padding="0px">
           <Link href="/" style={{ textDecoration: 'none' }}>
             <MenuItem bg="inherit" _hover={hoverColor} color={textColor}>
-              Home
+              Dashboard
             </MenuItem>
           </Link>
 

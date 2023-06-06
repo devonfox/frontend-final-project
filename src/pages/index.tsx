@@ -6,6 +6,7 @@ import GraphGrid from '@/components/ContentGrid/ContentGrid';
 import { Grid, GridItem } from '@chakra-ui/react';
 import TickerSection from '@/components/TickerBoard/TickerSection';
 import SP500Tickers from '@/utils/tickerSymbolData';
+import Head from 'next/head';
 import React from 'react';
 
 export default function Home() {
@@ -50,6 +51,9 @@ export default function Home() {
 
   return (
     <main>
+      <Head>
+        <title>Dashboard</title>
+      </Head>
       <Grid
         templateAreas={`
                         'tickers tickers'
