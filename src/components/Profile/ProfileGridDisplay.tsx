@@ -50,7 +50,6 @@ function ProfileGridDisplay(props: ProfileGridDisplayProps) {
         <GridItem colSpan={1}>
           <Card height="100%" width="100%" bgColor="black" borderRadius="lg">
             <CardBody>
-              <Flex></Flex>
               <ChartPie symbol={symbol} isProfile />
             </CardBody>
           </Card>
@@ -82,7 +81,7 @@ function ProfileGridDisplay(props: ProfileGridDisplayProps) {
 
       <Grid
         templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
-        gap={{base: 20, sm: 5}}
+        gap={{ base: 20, sm: 5 }}
       >
         <GridItem colSpan={1} mt={{ base: 10, md: 0 }}>
           <Heading as="h2" my={10}>
