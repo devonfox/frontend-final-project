@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Flex, Input } from '@chakra-ui/react';
+import {
+  Box, Button, Flex, Heading, Input,
+} from '@chakra-ui/react';
 
 interface ProfileSearchProps {
   setSymbol: React.Dispatch<React.SetStateAction<string>>;
@@ -21,20 +23,24 @@ function ProfileSearch(props: ProfileSearchProps) {
   };
 
   return (
-    <Flex mb={20}>
-      <Input
-        placeholder="Search"
-        size="lg"
-        value={inputValue}
-        onChange={handleInputChange}
-        marginRight={5}
-        marginBottom={10}
-        aria-label="Search"
-      />
-      <Button size="lg" onClick={handleButtonClick} variant="outline">
-        Search
-      </Button>
-    </Flex>
+    <Box>
+      <Heading as="h1" mb={10}>Stock Profiles</Heading>
+      <Flex mb={10}>
+        <Input
+          placeholder="Search"
+          size="lg"
+          value={inputValue}
+          onChange={handleInputChange}
+          marginRight={5}
+          // marginBottom={10}
+          aria-label="Search"
+        />
+        <Button size="lg" onClick={handleButtonClick} variant="outline">
+          Search
+        </Button>
+      </Flex>
+    </Box>
+
   );
 }
 

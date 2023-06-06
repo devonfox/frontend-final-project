@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Box,
+  Box, Text,
 } from '@chakra-ui/react';
 import ProfileSearch from '@/components/Profile/ProfileSearch';
 import ProfileGridDisplay from '@/components/Profile/ProfileGridDisplay';
@@ -15,11 +15,12 @@ function ProfileContainer(props: ProfileContainerProps) {
   const [symbol, setSymbol] = useState<string>('AAPL');
   const [init, setInit] = useState<boolean>(true);
 
+  const displayInit = (<Box><Text>Search for a stock symbol to display its profile.</Text></Box>);
+
   return (
     <Box backgroundColor={bgColor} color="white" paddingTop={10}>
-
-      <ProfileSearch setSymbol={setSymbol} setInit={setInit}/>
-      {!init && <ProfileGridDisplay symbol={symbol} />}
+      <ProfileSearch setSymbol={setSymbol} setInit={setInit} />
+      {init ? displayInit : <ProfileGridDisplay symbol={symbol} />}
     </Box>
   );
 }

@@ -7,10 +7,9 @@ export default function Home() {
   const pageBgColor = darkGray;
 
   return (
-    <main className="bg-black">
-      <Box mx={{ base: 10, md: 20 }}>
-        <Heading as="h1" mb={10}>Stock Profiles</Heading>
-        <ProfileContainer bgColor={"black"} />
+    <main style={{ backgroundColor: pageBgColor, minHeight: '100vh' }}>
+      <Box mx={{ base: 10, md: 20 }} bgColor={pageBgColor}>
+        <ProfileContainer bgColor={pageBgColor} />
       </Box>
     </main>
   );
