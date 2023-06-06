@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 interface ProfileData {
   name: string;
@@ -23,12 +23,11 @@ function useProfileData(symbol: string) {
         throw new Error('Failed to fetch name data');
       }
       const nameData = await nameResponse.json();
-      const { name } = nameData.results;
-      setProfileData(name);
+      const { name, description } = nameData.results;
+      setProfileData({ name, description });
     };
     fetchName().catch(() => setNotFound(true)).finally(() => { setLoading(false); });
   }, [symbol]);
-
 
   return { profileData, loading, notFound };
 }
