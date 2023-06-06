@@ -24,42 +24,36 @@ function TickerTable({ symbols }: tickerTableProps) {
             <Th
               fontWeight="extrabold"
               color="white"
-              textDecorationLine="underline"
             >
               Symbol
             </Th>
             <Th
               fontWeight="extrabold"
               color="white"
-              textDecorationLine="underline"
             >
               Price
             </Th>
             <Th
               fontWeight="extrabold"
               color="white"
-              textDecorationLine="underline"
             >
               Change
             </Th>
             <Th
               fontWeight="extrabold"
               color="white"
-              textDecorationLine="underline"
             >
               MC
             </Th>
             <Th
               fontWeight="extrabold"
               color="white"
-              textDecorationLine="underline"
             >
               Vol
             </Th>
             <Th
               fontWeight="extrabold"
               color="white"
-              textDecorationLine="underline"
             >
               DY
             </Th>
