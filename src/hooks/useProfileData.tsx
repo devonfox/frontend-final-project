@@ -58,11 +58,18 @@ function useProfileData(symbol: string) {
         // eslint-disable-next-line camelcase,max-len
         name,
         description,
+        // eslint-disable-next-line camelcase
         url: homepage_url,
         address: {
-          street: address.address1, city: address.city, state: address.state, code: address.postal_code,
+
+          street: address.address1,
+          city: address.city,
+          state: address.state,
+          code: address.postal_code,
         },
+        // eslint-disable-next-line camelcase
         totalEmployees: total_employees,
+        // eslint-disable-next-line camelcase
         listDate: list_date,
       });
     };

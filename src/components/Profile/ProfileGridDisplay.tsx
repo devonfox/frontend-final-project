@@ -13,7 +13,7 @@ import {
   Tbody,
   Tr,
   TableContainer, Table, Link, VStack,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 import ChartLine from '@/components/Chart/ChartLine';
 import ChartPie from '@/components/Chart/ChartPie';
 import useProfileData from '@/hooks/useProfileData';

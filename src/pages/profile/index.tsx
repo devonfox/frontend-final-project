@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ProfileContainer from '@/components/Profile/ProfileContainer';
-import { Box, Heading } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 export default function Home() {
   const darkGray = 'rgb(20,20,25)';
