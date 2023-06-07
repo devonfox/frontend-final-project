@@ -12,7 +12,7 @@ export default function Home() {
       <Head>
         <title>Stock Profiles</title>
       </Head>
-      <Box mx={{ base: 10, md: 20 }} bgColor={pageBgColor}>
+      <Box px={{ base: 10, md: 10 }} bgColor={pageBgColor}>
         <ProfileContainer bgColor={pageBgColor} />
       </Box>
     </main>
