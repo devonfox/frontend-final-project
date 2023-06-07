@@ -41,3 +41,24 @@ To learn more about Next.js, take a look at the following resources:
 - [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 Note: [Netlify](https://www.netlify.com/) is another option for deployment.
+
+
+Ryan's sources:
+  * Building a component: https://react.dev/learn/your-first-component#defining-a-component
+  * Rendering lists from arrays in react: https://react.dev/learn/rendering-lists#rendering-data-from-arrays
+  * Adding css styles in tsx: https://reacthustle.com/blog/how-to-set-inline-styles-in-react-typescript
+  * Using flexbox for the component grid: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox
+  * Add conditional rendering in react: https://react.dev/learn/conditional-rendering
+  * Using Chakra UI: https://chakra-ui.com/
+  * Using minmax for the grid component - switched from flex box so that the last row would align left: https://developer.mozilla.org/en-US/docs/Web/CSS/minmax
+  * Used repeat to set grid vals and found autofit as well: https://developer.mozilla.org/en-US/docs/Web/CSS/repeat
+  * Used flex direction along with md to make flexbox maintain a ratio until hitting a smaller size: https://github.com/chakra-ui/chakra-ui/discussions/4789
+  * Needed to override chakra ui's styles for the menu: https://chakra-ui.com/docs/styled-system/style-props
+  * Using font size to change icon size: https://stackoverflow.com/questions/14482249/setting-size-for-icon-in-css
+  * Formatting strings to USD and rounding: https://stackoverflow.com/questions/149055/how-to-format-numbers-as-currency-strings
+  * More rounding: https://medium.com/swlh/how-to-round-to-a-certain-number-of-decimal-places-in-javascript-ed74c471c1b8
+  * Get yesterdays date: https://stackoverflow.com/questions/5511323/calculate-the-date-yesterday-in-javascript
+  * Used Devon's code as reference to exclude weekends and trading holidays
+  * Using promise all to batch api calls https://hackmamba.io/blog/2020/12/aggregate-multiple-api-requests-with-promise-all/
+  * Converted timezone to NewYork for the NYSE hours: https://stackoverflow.com/questions/69335079/i-want-to-get-new-york-time-in-this-javascript-clock
+  * Fixed date string for api calls by extracting days individually and padding them: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStar
