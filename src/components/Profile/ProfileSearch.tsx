@@ -32,7 +32,6 @@ function ProfileSearch(props: ProfileSearchProps) {
           value={inputValue}
           onChange={handleInputChange}
           marginRight={5}
-          // marginBottom={10}
           aria-label="Search"
         />
         <Button size="lg" onClick={handleButtonClick} variant="outline">

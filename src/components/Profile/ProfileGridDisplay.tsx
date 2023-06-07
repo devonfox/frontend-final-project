@@ -14,7 +14,6 @@ import {
   TableContainer, Table, Link, VStack,
 } from '@chakra-ui/react';
 import ChartLine from '@/components/Chart/ChartLine';
-// import ChartPie from '@/components/Chart/ChartPie';
 import useProfileData from '@/hooks/useProfileData';
 import { WarningTwoIcon } from '@chakra-ui/icons';
 import ChartBar from '@/components/Chart/ChartBar';

@@ -6,12 +6,15 @@ function ChartTooltip({ active, payload }: any) {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     color = data.color;
-    let formattedAmount: string = '';
+    let formattedAmount: string;
 
-    if (data.value >= 1000000000) {
-      formattedAmount = `$${(data.value / 1000000000).toFixed(0)} billion`;
-    } else if (data.value >= 1000000) {
-      formattedAmount = `$${(data.value / 1000000).toFixed(0)} million`;
+    const oneBillion: number = 1000000000;
+    const oneMillion:number = 1000000;
+
+    if (data.value >= oneBillion) {
+      formattedAmount = `$${(data.value / oneBillion).toFixed(0)} billion`;
+    } else if (data.value >= oneMillion) {
+      formattedAmount = `$${(data.value / oneMillion).toFixed(0)} million`;
     } else {
       formattedAmount = new Intl.NumberFormat('en-US', {
         style: 'currency',
