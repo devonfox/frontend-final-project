@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
-interface PieChartElement {
+interface BarChartElement {
   name: string;
   value: number;
   color: string;
 }
 
-interface PieChartData {
+interface BarChartData {
   assets: {
     currency: string;
     label: string;
@@ -19,15 +19,8 @@ interface PieChartData {
     currency: string;
     label: string;
   };
-  pieChartData: PieChartElement[];
+  barChartData: BarChartElement[];
 }
-
-const INIT_DATA: PieChartData = {
-  assets: { currency: 'USD', label: 'Assets' },
-  liabilities: { currency: 'USD', label: 'Liabilities' },
-  equities: { currency: 'USD', label: 'Equities' },
-  pieChartData: [],
-};
 
 const colors = [
   '#ff7f0e', // orange
@@ -35,13 +28,20 @@ const colors = [
   '#17becf', // cyan
 ];
 
-function usePieChartData(symbol: string) {
-  const [chartData, setChartData] = useState<PieChartData>(INIT_DATA);
+const INIT_DATA: BarChartData = {
+  assets: { currency: 'USD', label: 'Assets' },
+  liabilities: { currency: 'USD', label: 'Liabilities' },
+  equities: { currency: 'USD', label: 'Equities' },
+  barChartData: [],
+};
+
+function useBarChartData(symbol: string) {
+  const [chartData, setChartData] = useState<BarChartData>(INIT_DATA);
   const [chartLoading, setChartLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const pieChartData: PieChartElement[] = [];
+      const barChartData: BarChartElement[] = [];
 
       try {
         const response = await fetch(`/api/polygonFinancials?symbol=${symbol}`);
@@ -53,8 +53,8 @@ function usePieChartData(symbol: string) {
             value: assetValue,
             label: assetLabel,
           } = data.results[0].financials.balance_sheet.current_assets;
-          pieChartData.push({
-            name: assetLabel,
+          barChartData.push({
+            name: assetLabel.split(' ')[1],
             value: assetValue,
             color: colors[0],
           });
@@ -63,8 +63,8 @@ function usePieChartData(symbol: string) {
             value: liabilityValue,
             label: liabilityLabel,
           } = data.results[0].financials.balance_sheet.current_liabilities;
-          pieChartData.push({
-            name: liabilityLabel,
+          barChartData.push({
+            name: liabilityLabel.split(' ')[1],
             value: liabilityValue,
             color: colors[1],
           });
@@ -73,7 +73,7 @@ function usePieChartData(symbol: string) {
             value: equityValue,
             label: equityLabel,
           } = data.results[0].financials.balance_sheet.equity;
-          pieChartData.push({
+          barChartData.push({
             name: equityLabel,
             value: equityValue,
             color: colors[2],
@@ -91,7 +91,7 @@ function usePieChartData(symbol: string) {
               currency: liabilityUnit,
               label: liabilityLabel,
             },
-            pieChartData,
+            barChartData,
           });
         } else {
           console.error('Failed to fetch data');
@@ -106,4 +106,4 @@ function usePieChartData(symbol: string) {
   return { chartData, chartLoading };
 }
 
-export default usePieChartData;
+export default useBarChartData;

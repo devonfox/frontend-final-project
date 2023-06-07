@@ -10,7 +10,7 @@ import {
   YAxis,
 } from 'recharts';
 import {
-  Spinner, Center, Box,
+  Spinner, Center, Box, Text, Flex,
 } from '@chakra-ui/react';
 
 import useLineChartData, { LineChartData } from '@/hooks/useLineChartData';
@@ -36,13 +36,27 @@ function CustomTooltip({
 }: TooltipProps<any, number>) {
   if (active && payload && payload.length) {
     return (
-      <div className="custom-tooltip">
-        <p className="label">
-          {`${formatDate(
-            label,
-          )} : $${payload[0].value.toFixed(2)}`}
-        </p>
-      </div>
+      <Box
+        bg="black"
+        border="1px solid"
+        borderColor="cyan.300"
+        p={3}
+        borderRadius="md"
+        fontFamily="Arial, sans-serif"
+        fontSize="12px"
+        color="white"
+      >
+        <Box mb={-4}>
+          <Flex alignItems="center">
+            <Text fontSize="2xl" color="cyan.300" marginRight={2}>
+              {`${formatDate(label)}:`}
+            </Text>
+            <Text fontSize="2xl">
+              {` $${payload[0].value.toFixed(2)}`}
+            </Text>
+          </Flex>
+        </Box>
+      </Box>
     );
   }
   return null;
@@ -61,12 +75,14 @@ const lineChart = (chartData: LineChartData, minPrice: number, maxPrice: number)
       tick={{ fontSize: '1rem' }}
       tickMargin={10}
       tickFormatter={(tickItem) => `${formatDate(tickItem)}`}
+      stroke="white"
     />
     <YAxis
       domain={[minPrice, maxPrice]}
       tick={{ fontSize: '1rem' }}
       tickFormatter={(tickItem) => `$${tickItem.toFixed(2)}`}
       tickMargin={10}
+      stroke="white"
     />
     <Tooltip content={<CustomTooltip />} />
 

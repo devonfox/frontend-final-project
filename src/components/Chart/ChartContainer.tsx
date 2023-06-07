@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Center, Text } from '@chakra-ui/react';
 import ChartLine from '@/components/Chart/ChartLine';
 import ChartPie from '@/components/Chart/ChartPie';
+import { WarningTwoIcon } from '@chakra-ui/icons';
 
 interface ChartContainerProps {
   symbol: string;
@@ -39,6 +40,11 @@ function ChartContainer(props: ChartContainerProps) {
     return (
       <Box height={400} width={400}>
         {`${symbolName}: No data available`}
+        <Box w="100%" h="100%" display="flex" alignItems="center" justifyContent="center">
+          <Center>
+            <WarningTwoIcon boxSize="4rem" color="white" />
+          </Center>
+        </Box>
       </Box>
     );
   }
