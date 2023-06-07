@@ -12,6 +12,8 @@ interface ProfileData {
   };
   totalEmployees: number;
   listDate: string;
+  marketCap: number;
+  ticker: string;
 }
 
 const INIT_DATA: ProfileData = {
@@ -26,6 +28,8 @@ const INIT_DATA: ProfileData = {
   },
   totalEmployees: 0,
   listDate: '',
+  marketCap: 0,
+  ticker: '',
 };
 
 function useProfileData(symbol: string) {
@@ -52,6 +56,9 @@ function useProfileData(symbol: string) {
         total_employees,
         // eslint-disable-next-line camelcase
         list_date,
+        // eslint-disable-next-line camelcase
+        market_cap,
+        ticker,
 
       } = nameData.results;
       setProfileData({
@@ -71,6 +78,9 @@ function useProfileData(symbol: string) {
         totalEmployees: total_employees,
         // eslint-disable-next-line camelcase
         listDate: list_date,
+        // eslint-disable-next-line camelcase
+        marketCap: market_cap,
+        ticker,
       });
     };
     fetchName().catch(() => setNotFound(true)).finally(() => { setLoading(false); });
