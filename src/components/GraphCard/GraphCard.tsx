@@ -65,7 +65,7 @@ function GraphCard(props: GraphCardProps) {
 
       <Box
         position="absolute"
-        top="-8px"
+        top="-2px"
         right="10px"
         display="flex"
       >
