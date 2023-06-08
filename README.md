@@ -88,5 +88,5 @@ Devon's sources:
   * [Recharts Responsive Container Issue](https://stackoverflow.com/questions/50891591/recharts-responsive-container-does-not-resize-correctly-in-flexbox)
   * [Netlify Build Troubleshooting](https://docs.netlify.com/configure-builds/troubleshooting-tips/)
   * [ChakraUI Grid Tutorial Video](https://www.youtube.com/watch?v=TpiOuBpfP2c)
-  * [React Render Errors](https://react.dev/reference/react/useState#im-getting-an-error-too-many-re-renders
+  * [React Render Errors](https://react.dev/reference/react/useState#im-getting-an-error-too-many-re-renders)
   * [ChakraUI useBreakpointValue Docs](https://chakra-ui.com/docs/hooks/use-breakpoint-value)
