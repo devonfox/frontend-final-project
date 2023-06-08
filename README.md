@@ -2,6 +2,8 @@
 
 by Ryan Filgas and Devon Fox
 
+Deployment: [https://stock-dash-ff.netlify.app/](https://stock-dash-ff.netlify.app/)
+
 ## Description
 
 This project is a stock market dashboard that displays a home dashboard with SP500 tickers, and associated line charts for prices, and then a pie chart showing total liabilities, equity and assets.  There is a secondary profile page where you can search to see information about individual symbols and tickers.  
