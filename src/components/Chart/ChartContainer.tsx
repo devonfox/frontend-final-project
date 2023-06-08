@@ -39,7 +39,7 @@ function ChartContainer(props: ChartContainerProps) {
   if (noData && !loading) {
     return (
       <Box height={400} width={400}>
-        {`${symbolName}: No data available`}
+        <Text fontSize="xl">{`${symbolName}: No data available`}</Text>
         <Box w="100%" h="100%" display="flex" alignItems="center" justifyContent="center">
           <Center>
             <WarningTwoIcon boxSize="4rem" color="white" />
@@ -51,7 +51,7 @@ function ChartContainer(props: ChartContainerProps) {
 
   return !loading ? (
     <Box height={400} width={400}>
-      <Text>{symbolName}</Text>
+      <Text fontSize="xl">{symbolName}</Text>
       {displayChart(symbol, switchCard)}
     </Box>
   ) : (
