@@ -17,7 +17,7 @@ const INIT_DATA: LineChartData = {
   priceData: [],
 };
 
-const BANK_HOLIDAYS = ['2023-05-29', '2023-12-25', '2023-12-26', '2023-01-01'];
+const BANK_HOLIDAYS = ['2023-06-12', '2023-05-29', '2023-12-25', '2023-12-26', '2023-01-01'];
 const getLastNthDays = (days: number) => {
   const today = new Date();
   const lastNthDays = [];
